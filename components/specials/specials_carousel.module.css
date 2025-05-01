@@ -1,0 +1,40 @@
+.embla {
+    display: flex;
+    justify-content: center;
+    background-color: var(--color-grey-dark-1);
+    padding: 10rem 0;
+}
+
+.embla__viewport{
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;    
+    height: 45rem;
+    width: 75rem;
+    margin: 0 10rem;
+}
+
+.embla__container {
+    display: flex;
+}
+
+.embla__slide {
+    flex: 0 0 40rem;  
+    min-width: 0;
+    margin: 0 5rem;
+    border-radius: 2rem;
+    transition: transform ease-in-out .5s;
+}
+
+.embla__slide:nth-child(1){
+    /* margin-left: 20rem; */
+}
+
+.embla__slide:nth-last-child(1){
+    margin-right: 15rem;
+}
+
+.embla__slide:hover {
+    transform: scale(1.3);
+}

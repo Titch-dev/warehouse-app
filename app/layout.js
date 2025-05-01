@@ -1,5 +1,10 @@
-import Navbar from "@/components/navbar";
+import Navbar from "@/components/navigation/navbar";
+import Footbar from "@/components/footer/footbar";
 import "./globals.css";
+
+
+import { latoFont } from "@/lib/fonts";
+import styles from './layout.module.css';
 
 export const metadata = {
   title: "Westville Warehouse",
@@ -9,9 +14,16 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="container max-w-6xl mx-auto min-h-screen">
-        <Navbar/>
-        {children}
+      <body className={latoFont.className}>
+        <header className={styles.header}>
+          <Navbar/>
+        </header>
+          <div className={styles.wrapper}>
+            {children}
+          </div>
+        <footer className={styles.footer}>
+          <Footbar/>
+        </footer>
       </body>
     </html>
   );

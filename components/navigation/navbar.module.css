@@ -1,0 +1,106 @@
+.container{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--color-grey-dark-1);
+    z-index: 20;
+    transition: transform 0.3s ease-in-out;
+}
+
+.hidden_navbar {
+    transform: translateY(-100%);
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    max-width: 128rem;
+}
+
+.navbar_logo {
+    height: 8rem;
+    margin: 1rem;
+    fill: url(#Gradient1);
+
+}
+
+.navbar_links {
+    display: flex;
+    width: 50rem;
+    justify-content: space-between;
+    font-size: 1.8rem;
+}
+
+.login_button {
+    position: relative;
+}
+
+
+.login_button::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0.2rem;
+    background-image: linear-gradient(
+        to right,
+        var(--color-pink), 
+        var(--color-orange),
+        var(--color-yellow)
+    );
+    transform: scaleX(0);
+    transition: transform .2s ease-in-out;
+}
+
+.login_button:hover::before {
+    transform: scaleX(1);
+}
+
+.login_button__icon {
+    z-index: 10;
+    height: 3rem;
+    width: 3rem;
+    margin-right: 1rem;
+    fill: url(#Gradient1);
+}
+
+.stop1 {
+    stop-color: var(--color-pink);
+}
+
+.stop2 {
+    stop-color: var(--color-orange);
+}
+
+.stop3 {
+    stop-color: var(--color-yellow);
+}
+
+.login_button__label{
+    position: relative;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    padding: 8px 10px;
+    font-size: 1.8rem;
+    color: var(--color-grey-light-3);
+    transition: transform .2s .1s,
+                top .2s .1s,
+                color .2s .1s;
+}
+
+.login_button__label:hover {
+    top: -2px;
+    color: var(--color-grey-dark-3);
+}
+
+.login_button__label:active {
+    top: -1px;
+    color: var(--color-grey-light-1);
+    /* background: linear-gradient(var(--color-pink), var(--color-yellow)); */
+}
