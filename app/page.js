@@ -1,10 +1,9 @@
 import Image from "next/image";
-// import { useState, useEffect } from 'react';
-
 
 import EventCard from "@/components/events/event_card";
 import SpecialsCarousel from "@/components/specials/specials_carousel";
 
+import events from "@/data/synethentic_data";
 import { rubikFont, latoFont } from "@/lib/fonts";
 
 import TornEdge from "@/public/assets/patterns/torn_paper_border.svg";
@@ -12,6 +11,9 @@ import Logo from "@/public/assets/wh_logo.svg";
 import styles from "./page.module.css";
 
 export default function Home() {
+
+  const event = events[2];
+
   return (
     <>
       <main className={styles.main}>
@@ -35,7 +37,7 @@ export default function Home() {
                 <h1 className={`${styles.section_title} ${styles.section_title_about} ${rubikFont.className}`}>Eat, Drink, Play!</h1>
                 <p>Chalk up and chill out at The Westville Warehouse — where 
                   craft beers flow, cocktails come on tap, and the pool tables 
-                  are ready for you.</p>
+                  are ready.</p>
                 <p>Whether you're here to shoot your shot, 
                   catch a talented band, or just unwind with your crew, 
                   we’ve got the perfect combo of laid-back vibes and high-energy 
@@ -46,7 +48,7 @@ export default function Home() {
         </section>
         <section className={`${styles.section} ${styles.section_event}`}>
           <h1 className={`${styles.section_title} ${styles.section_title_event} ${rubikFont.className}`}>Coming Up ...</h1>
-          <EventCard></EventCard>
+          <EventCard props={event}/>
         </section>
         <section className={`${styles.section} ${styles.section_specials}`}>
           <h1 className={`${styles.section_title} ${rubikFont.className}`}>Our Drinks Specials ...</h1>
