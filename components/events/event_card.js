@@ -14,9 +14,6 @@ export default function EventCard({props}) {
     const startDate = new Date(start);
     const endDate = new Date(end);
 
-    console.log("start:", start);
-    console.log("startDate:", new Date(start));
-
     const eventDate = new Intl.DateTimeFormat("en-GB", {
         weekday: "long",
         day: "2-digit",

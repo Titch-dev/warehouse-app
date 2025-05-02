@@ -3,16 +3,29 @@ import Image from "next/image";
 import EventCard from "@/components/events/event_card";
 import SpecialsCarousel from "@/components/specials/specials_carousel";
 
-import events from "@/data/synethentic_data";
-import { rubikFont, latoFont } from "@/lib/fonts";
+import { events, specialsFood, specialsDrink } from "@/data/synthetic_data";
+import { rubikFont } from "@/lib/fonts";
 
 import TornEdge from "@/public/assets/patterns/torn_paper_border.svg";
 import Logo from "@/public/assets/wh_logo.svg";
 import styles from "./page.module.css";
 
-export default function Home() {
+const todaysDate = "2025-05-01T00:00:00Z"
 
-  const event = events[2];
+// function to return the closest event to today's date
+const getNextEvent = (events, todaysDate) => {
+  const today = new Date(todaysDate);
+
+  const futureEvents = events
+    .map(event => ({ ...event, date: new Date(event.start) }))
+    .filter(event => event.date >= today)
+    .sort((a, b) => a.date - b.date);
+
+  return futureEvents.length > 0 ? futureEvents[0] : null;
+}
+
+export default function Home() {
+  const event = getNextEvent(events, todaysDate);
 
   return (
     <>
@@ -28,7 +41,7 @@ export default function Home() {
               <div className={styles.vid_grid}>
                 <div className={styles.vid_background}></div>
                 <div className={styles.vid_container}>
-                  <video autoPlay loop playsInline className={styles.section_about_image}>
+                  <video autoPlay loop playsInline>
                     <source src="/assets/video/ww_about_vid.mp4" />
                   </video>
                 </div>
@@ -51,9 +64,12 @@ export default function Home() {
           <EventCard props={event}/>
         </section>
         <section className={`${styles.section} ${styles.section_specials}`}>
-          <h1 className={`${styles.section_title} ${rubikFont.className}`}>Our Drinks Specials ...</h1>
-          <TornEdge className={styles.border_top}></TornEdge>
-            <SpecialsCarousel></SpecialsCarousel>
+        <TornEdge className={styles.border_top}></TornEdge>
+          <h1 className={`${styles.section_title} ${styles.section_specials_title} ${rubikFont.className}`}>Our Specials ...</h1>
+            <div className={styles.specials_container}>
+              <SpecialsCarousel specials={specialsFood}></SpecialsCarousel>
+              <SpecialsCarousel specials={specialsDrink}></SpecialsCarousel>
+            </div>
           <TornEdge className={styles.border_bottom}></TornEdge>
         </section>
     </main>

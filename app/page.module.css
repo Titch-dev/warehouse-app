@@ -126,7 +126,6 @@
     justify-content: center;
     align-items: center;
     padding: 10rem 0;
-    background-color: var(--color-grey-light-3);
     background-image: linear-gradient(
         var(--color-pink), 
         var(--color-orange), 
@@ -147,12 +146,19 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
+    padding: 10rem 0;
     background-color: var(--color-grey-dark-1);
 }
 
 .section_specials_title{
     width: 128rem;
-    justify-self: start;
+    padding-bottom: 3rem;
+}
+
+.specials_container{
+    display: flex;
+
 }
 
 /* ///// Torn edge ///// */
