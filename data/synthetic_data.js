@@ -62,7 +62,7 @@ export const events = [
 
 export const specialsDrink = [
     {
-        id: 1,
+        id: 4,
         img: '/assets/specials/drink/tuesday_tequila.png',
         title: 'Tequila Tuesday!',
         day: 'Tuesday',
@@ -78,7 +78,7 @@ export const specialsDrink = [
         ]
     },
     {
-        id: 2,
+        id: 5,
         img: '/assets/specials/drink/wednesday_combo.png',
         title: 'Wednesday Combo',
         day: 'Wednesday',
@@ -94,7 +94,7 @@ export const specialsDrink = [
         ]
     },
     {
-        id: 3,
+        id: 6,
         img: '/assets/specials/drink/thursday_thirsty.png',
         title: 'Thirsty Thursdays',
         day: 'Thursday',
@@ -118,7 +118,7 @@ export const specialsDrink = [
         ]
     },
     {
-        id: 4,
+        id: 7,
         img: '/assets/specials/drink/saturday_student.png',
         title: 'Student Night',
         day: 'Saturday',

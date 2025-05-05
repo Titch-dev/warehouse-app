@@ -47,7 +47,7 @@ export default function Home() {
                 </div>
               </div>
               <div className={styles.section_about_text}>
-                <h1 className={`${styles.section_title} ${styles.section_title_about} ${rubikFont.className}`}>Eat, Drink, Play!</h1>
+                <h1 className={`${styles.section_title} ${styles.about_title} ${rubikFont.className}`}>Eat, Drink, Play!</h1>
                 <p>Chalk up and chill out at The Westville Warehouse — where 
                   craft beers flow, cocktails come on tap, and the pool tables 
                   are ready.</p>
@@ -60,15 +60,19 @@ export default function Home() {
         <TornEdge className={styles.border_bottom}></TornEdge>
         </section>
         <section className={`${styles.section} ${styles.section_event}`}>
-          <h1 className={`${styles.section_title} ${styles.section_title_event} ${rubikFont.className}`}>Coming Up ...</h1>
-          <EventCard props={event}/>
+          <div className={styles.section_wrapper}>
+            <h1 className={`${styles.section_title} ${styles.section_title_event} ${rubikFont.className}`}>Coming Up ...</h1>
+            <EventCard props={event}/>
+          </div>
         </section>
         <section className={`${styles.section} ${styles.section_specials}`}>
         <TornEdge className={styles.border_top}></TornEdge>
-          <h1 className={`${styles.section_title} ${styles.section_specials_title} ${rubikFont.className}`}>Our Specials ...</h1>
-            <div className={styles.specials_container}>
-              <SpecialsCarousel specials={specialsFood}></SpecialsCarousel>
-              <SpecialsCarousel specials={specialsDrink}></SpecialsCarousel>
+          <div className={styles.section_wrapper}>
+            <h1 className={`${styles.section_title} ${styles.specials_title} ${rubikFont.className}`}>Our Specials ...</h1>
+              <div className={styles.specials_container}>
+                <SpecialsCarousel title='Food' specials={specialsFood}></SpecialsCarousel>
+                <SpecialsCarousel title='Drinks' specials={specialsDrink}></SpecialsCarousel>
+              </div>
             </div>
           <TornEdge className={styles.border_bottom}></TornEdge>
         </section>

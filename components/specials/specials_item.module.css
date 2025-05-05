@@ -31,18 +31,17 @@
 
 .content {
     display: flex;
-    border-bottom-left-radius: 2rem;
-    border-bottom-right-radius: 2rem;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    border-bottom-left-radius: 2rem;
+    border-bottom-right-radius: 2rem;
     width: 100%;
     margin-top: -10rem;
     height: 20rem;
     background-image: linear-gradient(
         to top,
         rgba(0,0,0,1) 0%,
-        rgba(0,0,0,.90) 60%,
+        rgba(0,0,0,.9) 65%,
         rgba(0,0,0,0) 100%
     );
 }
@@ -50,7 +49,7 @@
 .title {
     position: relative;
     font-size: 3rem;
-    padding: 1.5rem 0 0 0;
+    padding: 2rem 0 0 0;
 }
 
 .title::before {
@@ -67,10 +66,25 @@
     );
 }
 
+.offer_wrap{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+}
+
+.sml_text {
+    font-size: 1.6rem;
+}
+
+.lg_text {
+    font-size: 2.1rem;
+}
+
 .offer_line {
     display: flex;
     width: 100%;
-    padding: 1rem 2rem;
+    padding: 0 2rem;
     justify-content: space-between;
-    font-size: 2rem;
 }

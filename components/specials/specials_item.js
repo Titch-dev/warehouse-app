@@ -8,16 +8,19 @@ export default function SpecialsItem({ item }) {
     <div className={styles.container}>
         <h1 className={`${styles.weekday} ${rubikFont.className}`}>{item.day}</h1>
         <img className={styles.image} src={item.img}></img>
-        <div className={styles.content}>
+        <div className={`${styles.content} `}>
             <h1 className={`${styles.title} ${rubikFont.className}`}>{item.title}</h1>
-            {item.offers.map((e) => (
+            <div className={`${styles.offer_wrap} ${item.offers.length > 2 ? styles.sml_text : styles.lg_text }`}>
+              {item.offers.map((e) => (
                 <div className={styles.offer_line}>
                     <p>{e.offer}</p>
                     <p>{typeof e.price === 'number'
                         ? `R${e.price}`
                         : `${e.price}`}</p>
                 </div>
-            ))}
+              ))}
+            </div>
+              
         </div>
     </div>
   )
