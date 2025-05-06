@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import Link from "next/link";
 
-import eventImg from '@/public/assets/events/karaoke.png';
 import CalendarIcon from '@/public/assets/icons/calendar-icon.svg';
 import OpenDoorIcon from '@/public/assets/icons/door-open-solid.svg';
 import ClockIcon from '@/public/assets/icons/clock-icon.svg';
@@ -9,35 +8,50 @@ import styles from './event_card.module.css';
 
 import { rubikFont } from "@/lib/fonts";
 
-export default function EventCard() {
+export default function EventCard({props}) {
+    const { id, title, description, start, end, price, img, alt } = props;
+
+    const startDate = new Date(start);
+    const endDate = new Date(end);
+
+    const eventDate = new Intl.DateTimeFormat("en-GB", {
+        weekday: "short",
+        day: "2-digit",
+        month: "short",
+        timeZone: "UTC", // optional, depending on how you want to treat the input
+    }).format(startDate);
+    
+    const options = {
+        hour: "numeric",
+        hour12: true,
+        timeZone: "UTC"
+    }
+
+    const startTime = startDate.toLocaleTimeString("en-GB", options).toLowerCase();
+    const endTime = endDate.toLocaleTimeString("en-GB", options).toLowerCase();
+
     return (
-        <div className={styles.event_card}>
-            <div className={styles.event_content}>
-            <h1 className={`${rubikFont.className} ${styles.event_title}`}>
-                Karaoke!
-            </h1>
-            <p className={styles.event_description}>Get ready to hit the stage and belt out your favorite 
-                tunes at our Karaoke Night! Whether you're a shower singer 
-                or a rockstar in the making, this is your chance to shine. 
-                Grab a mic, enjoy awesome drinks, and vibe with a crowd that 
-                loves a good time. No judgment—just pure fun!</p>
-            <div className={styles.event_details}>
-                <div className={styles.event_icon_container}>
-                    <CalendarIcon className={styles.icon}></CalendarIcon>
-                    <p className={styles.event_icon_text}>Thursday 03 Apr</p>
-                </div>
-                <div className={styles.event_icon_container}>
-                    <ClockIcon className={styles.icon}></ClockIcon>
-                    <p className={styles.event_icon_text}>7pm - 11pm</p>
-                </div>
-                <div className={styles.event_icon_container}>
-                    <OpenDoorIcon className={styles.icon}></OpenDoorIcon>
-                    <p className={styles.event_icon_text}>R 10</p>
+        <div key={id} className={styles.event_card}>
+            <div className={styles.event_text}>
+                <h1 className={`${styles.title} ${rubikFont.className}`}>{title}</h1>
+                <p className={styles.description}>{description}</p>
+                <div className={styles.icons}>
+                    <div className={styles.icon_container}>
+                        <CalendarIcon className={styles.icon}></CalendarIcon>
+                        <p>{eventDate}</p>
+                    </div>
+                    <div className={styles.icon_container}>
+                        <OpenDoorIcon className={styles.icon}></OpenDoorIcon>
+                        <p>{price === 0 ? "Free" : `R ${price} pp`}</p>
+                    </div>
+                    <div className={styles.icon_container}>
+                        <ClockIcon className={styles.icon}></ClockIcon>
+                        <p>{`${startTime} - ${endTime} `}</p>
+                    </div>
                 </div>
             </div>
-            </div>
-            <Link href="/events" className={styles.event_link}>
-                <Image src={eventImg} className={styles.event_image}></Image>
+            <Link href="/events" className={styles.link}>
+                <Image src={img} alt={alt} width={300} height={450} className={styles.image} />
             </Link>
         </div>
   )

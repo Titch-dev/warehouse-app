@@ -1,40 +1,80 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2.5rem 0;
+}
+
+.title {
+    font-size: 3.4rem;
+    color: var(--color-grey-light-3);
+    margin: 3rem 0 1rem 0;
+}
+
 .embla {
     display: flex;
-    justify-content: center;
-    background-color: var(--color-grey-dark-1);
-    padding: 10rem 0;
+    position: relative;
+    max-width: 100vw;
 }
 
 .embla__viewport{
-    position: relative;
-    display: flex;
-    align-items: center;
-    overflow: hidden;    
-    height: 45rem;
-    width: 75rem;
-    margin: 0 10rem;
+    overflow: hidden;
 }
 
 .embla__container {
     display: flex;
+    touch-action: pan-y pinch-zoom;
 }
 
 .embla__slide {
-    flex: 0 0 40rem;  
+    flex: 0 0 100%;  
     min-width: 0;
-    margin: 0 5rem;
-    border-radius: 2rem;
-    transition: transform ease-in-out .5s;
+    padding: 0 1.5rem;
 }
 
-.embla__slide:nth-child(1){
-    /* margin-left: 20rem; */
+.btn {
+    display: none;
 }
 
-.embla__slide:nth-last-child(1){
-    margin-right: 15rem;
+.embla__dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
 }
 
-.embla__slide:hover {
-    transform: scale(1.3);
+.embla__dot {
+    position: relative;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    border: .2rem solid var(--color-grey-light-3);
+    margin: 0 1.5rem;
+    cursor: pointer;
+}
+
+.embla__dot_selected{
+    background: radial-gradient(
+       rgba(255,255,255,0) 10%,
+       rgba(255,255,255,1)
+    )
+}
+
+@media (min-width: 1024px) {
+
+    .title{
+        font-size: 4rem;
+    }
+
+    .embla {
+        max-width: 65rem;
+        background-color: var(--color-grey-dark-1);
+    
+    }
+
+    .btn {
+        display: block;
+        margin: 0 2rem;
+        cursor: pointer;
+    }
 }

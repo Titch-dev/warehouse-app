@@ -2,6 +2,11 @@
     background-color: var(--color-grey-dark-1);
 }
 
+.wrapper{
+    background-color: var(--color-grey-dark-1);
+    padding-top: 10rem;
+}
+
 .footer {
     background-color: var(--color-grey-dark-1);
 }
