@@ -34,6 +34,13 @@
   --color-pink: #ED2EA5;
   --color-orange: #FA8057;
   --color-yellow: #FAD009;
+
+  /* Breakpoints (min-width) */
+  --bp-sm: 640px;   /* Small phones or landscape phones */
+  --bp-md: 768px;   /* Tablets */
+  --bp-lg: 1024px;  /* Laptops */
+  --bp-xl: 1280px;  /* Desktops */
+  --bp-2xl: 1536px; /* Large screens */
 }
 
 *,

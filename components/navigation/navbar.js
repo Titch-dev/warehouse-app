@@ -10,7 +10,7 @@ import styles from "./navbar.module.css";
 import LogoImg from "@/public/assets/wh_logo.svg";
 
 export default function Navbar() {
-    const [isHidden, setIsHidden] = useState(false); // Start hidden if at the top
+    const [isHidden, setIsHidden] = useState(false);
     const [lastScrollY, setLastScrollY] = useState(0);
     const [hasScrolled, setHasScrolled] = useState(false); // Track if user has scrolled
 
@@ -21,7 +21,7 @@ export default function Navbar() {
             }
 
             if (hasScrolled) {
-                if (window.scrollY > lastScrollY) {
+                if (window.scrollY > lastScrollY && window.scrollY >= 100) {
                     setIsHidden(true); // Hide on scroll down
                 } else {
                     setIsHidden(false); // Show on scroll up

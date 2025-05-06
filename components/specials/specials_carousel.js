@@ -1,7 +1,8 @@
 "use client"
 
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
+
 import SpecialsItem from "./specials_item";
 import Chevron from '@/components/navigation/chevron';
 
@@ -11,7 +12,7 @@ import { rubikFont } from "@/lib/fonts";
 
 export default function SpecialsCarousel({ title, specials }) {
     const [emblaRef, emblaApi] = useEmblaCarousel({ loop: false });
-    let [selectedIndex, setSelectedIndex] = useState(0) 
+    const [selectedIndex, setSelectedIndex] = useState(0); 
 
     const scrollPrev = useCallback(() => {
         if (emblaApi) emblaApi.scrollPrev();
@@ -21,9 +22,29 @@ export default function SpecialsCarousel({ title, specials }) {
         if (emblaApi) emblaApi.scrollNext()
     }, [emblaApi]);
 
+    const onDotButtonClick = useCallback(
+        (index) => {
+            if (!emblaApi) return;
+            emblaApi.scrollTo(index)
+        },
+        [emblaApi]
+    )
+
+    const onSelect = useCallback((emblaApi) => {
+        setSelectedIndex(emblaApi.selectedScrollSnap())
+    }, [])
+
+    useEffect(() => {
+        if (!emblaApi) return;
+
+        onSelect(emblaApi)
+        emblaApi.on('reInit', onSelect).on('select', onSelect)
+
+    }, [emblaApi, onSelect]);
+
   return (
     <div className={styles.wrapper}>
-        <h1 className={`${styles.title} ${rubikFont.className}`}>{title}</h1>
+        <h1 className={`${styles.title} ${rubikFont.className}`}>{`${title}:`}</h1>
         <div className={styles.embla} >
             <button className={styles.btn} onClick={scrollPrev}>
                 <Chevron direction="left"/>
@@ -32,7 +53,7 @@ export default function SpecialsCarousel({ title, specials }) {
                 <div className={styles.embla__container}>
                     {specials.map((special) => (
                         <div key={special.id} className={styles.embla__slide}>
-                            <SpecialsItem key={special.id} item={special}/>
+                            <SpecialsItem key={special.id} item={special} className={styles.embla__slide}/>
                         </div>
                     ))}
                 </div>
@@ -40,6 +61,23 @@ export default function SpecialsCarousel({ title, specials }) {
             <button className={styles.btn} onClick={scrollNext}>
                 <Chevron direction="right" />
             </button>
+
+            
+            
+        </div>
+        <div className={styles.embla__dots}>
+                {specials.map((_, index) => (
+                    <button 
+                        key={index} 
+                        onClick={() => onDotButtonClick(index)}
+                        className={
+                            `${styles.embla__dot} 
+                            ${index === selectedIndex 
+                            ? styles.embla__dot_selected 
+                            : ''}`
+                        }>
+                    </button>
+                ))}
         </div>
     </div>
    
