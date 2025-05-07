@@ -21,6 +21,7 @@
 
 
 :root {
+  /* Color swatch */
   --color-grey-light-1: #faf9f9;
   --color-grey-light-2: #f4f2f2;
   --color-grey-light-3: #f0eeee;
@@ -41,6 +42,10 @@
   --bp-lg: 1024px;  /* Laptops */
   --bp-xl: 1280px;  /* Desktops */
   --bp-2xl: 1536px; /* Large screens */
+
+  /* Box shadow */
+  --shadow-dark: 10px 10px 25px black;
+  --shadow-light: 0px 0px 20px white;
 }
 
 *,
