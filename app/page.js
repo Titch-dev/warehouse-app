@@ -1,33 +1,23 @@
 import Image from "next/image";
 
-import EventCard from "@/components/events/event_card";
+import EventItem from "@/components/events/event_item";
 import SpecialsCarousel from "@/components/specials/specials_carousel";
 
 import { events, specialsFood, specialsDrink } from "@/data/synthetic_data";
 import { rubikFont } from "@/lib/fonts";
+import { getSortedFutureEvents } from "@/lib/events";
 
 import TornEdge from "@/public/assets/patterns/torn_border.svg";
-import TornBackground from "@/public/assets/patterns/about_background.svg";
+import TornBackground from "@/public/assets/patterns/torn_background.svg";
  
 import Logo from "@/public/assets/wh_logo.svg";
 import styles from "./page.module.css";
 
-const todaysDate = "2025-05-01T00:00:00Z"
-
-// function to return the closest event to today's date
-const getNextEvent = (events, todaysDate) => {
-  const today = new Date(todaysDate);
-
-  const futureEvents = events
-    .map(event => ({ ...event, date: new Date(event.start) }))
-    .filter(event => event.date >= today)
-    .sort((a, b) => a.date - b.date);
-
-  return futureEvents.length > 0 ? futureEvents[0] : null;
-}
+const todaysDate = "2025-04-29T00:00:00Z";
 
 export default function Home() {
-  const event = getNextEvent(events, todaysDate);
+  const eventList = getSortedFutureEvents(events, todaysDate);
+  const nextEvent = eventList[0];
 
   return (
     <>
@@ -54,19 +44,21 @@ export default function Home() {
             </div>
               <div className={styles.vid_background}>
                 <div className={styles.vid_container}>
-                  <video autoPlay loop playsInline>
+                  <video autoPlay loop muted playsInline>
                     <source src="/assets/video/ww_about_vid.mp4" />
                   </video>
                 </div>
               </div>
           </div>
-        <TornEdge className={styles.border_bottom}/>
+          <TornEdge className={styles.border_bottom}/>
         </section>
 
        
         <section className={styles.event}>
             <h1 className={`${styles.event_title} ${rubikFont.className}`}>Coming Up ...</h1>
-            <EventCard props={event}/>
+            <div className={styles.event_wrapper}>
+              <EventItem props={nextEvent} isReversed='false'/>
+            </div>
         </section>
 
         

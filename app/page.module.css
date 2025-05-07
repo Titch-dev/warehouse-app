@@ -1,6 +1,7 @@
 .main {
     max-width: 100%;
-    margin: 0 auto;
+    padding-top: 10rem;
+    background-color: var(--color-grey-dark-1);
 }
 
 /* ///// Hero section ////// */
@@ -8,7 +9,6 @@
 .section_hero {
     display: flex;
     justify-content: center;
-    background-color: var(--color-grey-dark-1);
 }
 
 .hero_image {
@@ -161,7 +161,6 @@
     }
 }
 
-
 /* ////// Event ////// */
 .event {
     display: flex;
@@ -184,6 +183,14 @@
     margin-bottom: 3rem;
 }
 
+.event_wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
 
 @media (min-width: 1024px) {
     .event {
@@ -192,6 +199,10 @@
 
     .event_title {
         font-size: 5rem;
+    }
+
+    .event_wrapper {
+        width: 128rem;
     }
 }
 
@@ -284,5 +295,4 @@
         transform: rotate(180deg);
     }
 }
-
 
