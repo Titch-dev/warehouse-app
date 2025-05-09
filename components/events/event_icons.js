@@ -6,7 +6,6 @@ import styles from './event_icons.module.css'
 
 export default function EventIcons({date, price, start, end}) {
 
-
   return (
     <div className={styles.icons}>
         <div className={styles.icon_container}>

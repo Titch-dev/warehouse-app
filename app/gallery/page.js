@@ -1,60 +1,115 @@
 "use client"
 
 import Image from "next/image";
-import { useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import useEmblaCarousel from "embla-carousel-react";
+
 
 import Chevron from "@/components/navigation/chevron";
-import styles from "./page.module.css";
 
-const imageList = [
-  {id:1, src: "/assets/gallery/wh_gal_1.png"},
-  {id:2, src: "/assets/gallery/wh_gal_2.png"},
-  {id:3, src: "/assets/gallery/wh_gal_3.png"},
-  {id:4, src: "/assets/gallery/wh_gal_4.png"},
-  {id:5, src: "/assets/gallery/wh_gal_5.png"},
-  {id:6, src: "/assets/gallery/wh_gal_6.png"},
-  {id:7, src: "/assets/gallery/wh_gal_7.png"},
-  {id:8, src: "/assets/gallery/wh_gal_8.png"},
-  {id:9, src: "/assets/gallery/wh_gal_9.png"},
-  {id:10, src: "/assets/gallery/wh_gal_10.png"},
-  {id:11, src: "/assets/gallery/wh_gal_11.png"},
-  {id:12, src: "/assets/gallery/wh_gal_12.png"},
-  {id:13, src: "/assets/gallery/wh_gal_13.png"},
-  {id:14, src: "/assets/gallery/wh_gal_14.png"},
-]
+import { galleryList } from "@/data/synthetic_data";
+
+import PaintStrokeSVG from '@/components/assets/patterns/paint_stroke_SVG';
+import TornBorder from "@/components/assets/patterns/torn_border";
+
+import styles from "./page.module.css";
+import { rubikFont } from "@/lib/fonts";
+
+
 
 export default function GalleryPage() {
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true })
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const thumbnailRefs = useRef([]);
 
-  const handlePrev = () => {
-    setSelectedIndex((prev) => (prev === 0 ? imageList.length - 1 : prev - 1));
-  };
+  const scrollPrev = useCallback(() => {
+    if (emblaApi) emblaApi.scrollPrev()
+  }, [emblaApi]);
 
-  const  handleNext = () => {
-    setSelectedIndex((prev) => (prev === imageList.length - 1 ? 0 : prev + 1));
-  };
+  const scrollNext = useCallback(() => {
+    if (emblaApi) emblaApi.scrollNext()
+  }, [emblaApi]);
 
-  const handleSelect = (index) => {
+  const onThumbnailClick = useCallback((index) =>{
+    if (!emblaApi) return;
+    emblaApi.scrollTo(index);
+  }, [emblaApi]);
+
+  const onSelect = useCallback((emblaApi) => {
+    const index = emblaApi.selectedScrollSnap();
     setSelectedIndex(index);
-  }
+
+    // scroll the selected thumbnail into view
+    const selectedThumb = thumbnailRefs.current[index];
+
+    if (window.innerWidth < 1024) {
+      selectedThumb?.scrollIntoView(
+        {
+          behavior: 'smooth',
+          block: 'end'
+        }
+      );
+    } else {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+
+    onSelect(emblaApi)
+    emblaApi.on('select', onSelect).on('reInit', onSelect)
+  
+  }, [emblaApi, onSelect]);
 
   return (
     <div className={styles.gallery_wrapper}>
-      <section className={styles.viewing_section}>
-          <button onClick={handlePrev} className={styles.nav_button}>
-            <Chevron direction="left" />
-          </button> 
-          <img src={imageList[selectedIndex].src} className={styles.image_def}></img>
-          <button onClick={handleNext} className={styles.nav_button}>
-            <Chevron direction="right" />
-          </button>
-      </section>
+        <button onClick={scrollPrev} className={styles.btn}>
+          <Chevron direction="left" />
+        </button>
+        <div className={styles.fixed}>
+        <h1 className={`${styles.title} ${rubikFont.className}`}>Gallery</h1>
+        <section className={styles.viewing_section}>
+        <PaintStrokeSVG className={styles.viewing_bg}>
+          <linearGradient id="Gradient2" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop className={styles.stop1} offset="0%" />
+              <stop className={styles.stop2} offset="50%" />
+              <stop className={styles.stop3} offset="100%" />
+            </linearGradient>
+        </PaintStrokeSVG>
+          <div className={styles.embla__viewport} ref={emblaRef}>
+            <div className={styles.embla__container}>
+              {galleryList.map((image) => (
+                <div key={image.id} className={styles.embla__slide}>
+                  <Image className={styles.image} src={image.src} width={300} height={300} />
+                </div>
+              ))}
+            </div>
+          </div>
+        
+        </section>
+        <TornBorder top={false}/>
+        </div>
+        
+      <button onClick={scrollNext} className={styles.btn}>
+          <Chevron direction="right" />
+        </button>
+      
       <section className={styles.gallery_section}>
-        { imageList.map((image, index) => (
+        { galleryList.map((image, index) => (
           <figure 
             key={image.id}
-            onClick={() => handleSelect(index)} 
-            className={`${styles[`img_thumbnail_${image.id}`]} ${index === selectedIndex ? styles.img_selected : ""}`}
+            ref={el => thumbnailRefs.current[index] = el}
+            onClick={() => onThumbnailClick(index)} 
+            className={
+              `${styles[`thumbnail_${image.id}`]} 
+              ${index === selectedIndex 
+                ? styles.selected 
+                : ""
+              }`}
           >
             <img src={image.src} />
           </figure>

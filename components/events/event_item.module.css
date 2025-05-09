@@ -73,8 +73,9 @@
         display: block;
         top: 0;
         left: 0;
-        width: 100%;
+        width: 128rem;
         height: 100%;
+        fill: var(--color-grey-dark-4);
         filter: drop-shadow(var(--shadow-dark));
     }
 

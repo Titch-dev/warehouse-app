@@ -182,3 +182,20 @@ export const specialsFood= [
         ]
     },
 ]
+
+export const galleryList = [
+  {id:1, src: "/assets/gallery/wh_gal_1.png"},
+  {id:2, src: "/assets/gallery/wh_gal_2.png"},
+  {id:3, src: "/assets/gallery/wh_gal_3.png"},
+  {id:4, src: "/assets/gallery/wh_gal_4.png"},
+  {id:5, src: "/assets/gallery/wh_gal_5.png"},
+  {id:6, src: "/assets/gallery/wh_gal_6.png"},
+  {id:7, src: "/assets/gallery/wh_gal_7.png"},
+  {id:8, src: "/assets/gallery/wh_gal_8.png"},
+  {id:9, src: "/assets/gallery/wh_gal_9.png"},
+  {id:10, src: "/assets/gallery/wh_gal_10.png"},
+  {id:11, src: "/assets/gallery/wh_gal_11.png"},
+  {id:12, src: "/assets/gallery/wh_gal_12.png"},
+  {id:13, src: "/assets/gallery/wh_gal_13.png"},
+  {id:14, src: "/assets/gallery/wh_gal_14.png"},
+]
