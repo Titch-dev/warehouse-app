@@ -39,22 +39,13 @@ export default function GalleryPage() {
     const index = emblaApi.selectedScrollSnap();
     setSelectedIndex(index);
 
-    // scroll the selected thumbnail into view
-    const selectedThumb = thumbnailRefs.current[index];
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
 
-    if (window.innerWidth < 1024) {
-      selectedThumb?.scrollIntoView(
-        {
-          behavior: 'smooth',
-          block: 'end'
-        }
-      );
-    } else {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
-    }
+    console.log(window.screenY);
+
   }, []);
 
   useEffect(() => {
@@ -67,12 +58,12 @@ export default function GalleryPage() {
 
   return (
     <div className={styles.gallery_wrapper}>
+
+      <h1 className={`${styles.title} ${rubikFont.className}`}>Gallery</h1>     
+      <section className={styles.viewing_section}>
         <button onClick={scrollPrev} className={styles.btn}>
           <Chevron direction="left" />
         </button>
-        <div className={styles.fixed}>
-        <h1 className={`${styles.title} ${rubikFont.className}`}>Gallery</h1>
-        <section className={styles.viewing_section}>
         <PaintStrokeSVG className={styles.viewing_bg}>
           <linearGradient id="Gradient2" x1="0%" y1="0%" x2="100%" y2="0%">
               <stop className={styles.stop1} offset="0%" />
@@ -80,25 +71,24 @@ export default function GalleryPage() {
               <stop className={styles.stop3} offset="100%" />
             </linearGradient>
         </PaintStrokeSVG>
-          <div className={styles.embla__viewport} ref={emblaRef}>
-            <div className={styles.embla__container}>
-              {galleryList.map((image) => (
-                <div key={image.id} className={styles.embla__slide}>
-                  <Image className={styles.image} src={image.src} width={300} height={300} />
-                </div>
-              ))}
-            </div>
+        <div className={styles.embla__viewport} ref={emblaRef}>
+          <div className={styles.embla__container}>
+            {galleryList.map((image) => (
+              <div key={image.id} className={styles.embla__slide}>
+                <Image className={styles.image} src={image.src} width={300} height={300} />
+              </div>
+            ))}
           </div>
-        
-        </section>
-        <TornBorder top={false}/>
-        </div>
-        
-      <button onClick={scrollNext} className={styles.btn}>
+        </div> 
+        <button onClick={scrollNext} className={styles.btn}>
           <Chevron direction="right" />
         </button>
+        <TornBorder top={false}/>
+      </section>
+      
       
       <section className={styles.gallery_section}>
+        <div className={styles.gallery}>
         { galleryList.map((image, index) => (
           <figure 
             key={image.id}
@@ -114,6 +104,7 @@ export default function GalleryPage() {
             <img src={image.src} />
           </figure>
         ))}
+        </div>
       </section>
     </div>
   )

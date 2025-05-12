@@ -16,13 +16,13 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={latoFont.className}>
         <header className={styles.header}>
-          {/* <Navbar/>  */}
+          <Navbar/> 
         </header>
           <div className={styles.wrapper}>
             {children}
           </div>
         <footer className={styles.footer}>
-          {/* <Footbar/> */}
+          <Footbar/>
         </footer>
       </body>
     </html>
