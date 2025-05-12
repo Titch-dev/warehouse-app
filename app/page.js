@@ -7,8 +7,11 @@ import { events, specialsFood, specialsDrink } from "@/data/synthetic_data";
 import { rubikFont } from "@/lib/fonts";
 import { getSortedFutureEvents } from "@/lib/events";
 
-import TornEdge from "@/public/assets/patterns/torn_border.svg";
-import TornBackground from "@/public/assets/patterns/torn_background.svg";
+import TornBackgroundSVG from "@/components/assets/patterns/torn_background_SVG";
+import TornBorderSVG from "@/components/assets/patterns/torn_border_SVG";
+import TornBorderMobSVG from "@/components/assets/patterns/torn_border_mob_SVG";
+
+import TornBorder from "@/components/assets/patterns/torn_border";
  
 import Logo from "@/public/assets/wh_logo.svg";
 import styles from "./page.module.css";
@@ -29,9 +32,9 @@ export default function Home() {
         </section>
 
         <section className={styles.about}>
-          <TornEdge className={styles.border_top}/>
+          <TornBorder top={true}/>
           <div className={styles.about_content}>
-            <TornBackground className={styles.content_background} />
+            <TornBackgroundSVG className={styles.content_background} />
             <div className={styles.about_text}>
               <h1 className={`${styles.about_title} ${rubikFont.className}`}>Eat, Drink, Play!</h1>
               <p>Chalk up and chill out at The Westville Warehouse — where 
@@ -42,34 +45,33 @@ export default function Home() {
                 we’ve got the perfect combo of laid-back vibes and high-energy 
                 fun. Weeknights, weekends — we keep the good times rolling.</p>
             </div>
-              <div className={styles.vid_background}>
-                <div className={styles.vid_container}>
-                  <video autoPlay loop muted playsInline>
-                    <source src="/assets/video/ww_about_vid.mp4" />
-                  </video>
-                </div>
+              <div className={styles.vid_container}>
+                <video autoPlay loop muted playsInline>
+                  <source src="/assets/video/ww_about_vid.mp4" />
+                </video>
               </div>
           </div>
-          <TornEdge className={styles.border_bottom}/>
+          <TornBorder top={false}/>
         </section>
 
        
         <section className={styles.event}>
             <h1 className={`${styles.event_title} ${rubikFont.className}`}>Coming Up ...</h1>
             <div className={styles.event_wrapper}>
-              <EventItem props={nextEvent} isReversed='false'/>
+              <EventItem props={nextEvent} />
             </div>
         </section>
 
         
         <section className={styles.specials}>
-          <TornEdge className={styles.border_top}></TornEdge>
+
+          <TornBorder top={true}/>
           <h1 className={`${styles.specials_title} ${rubikFont.className}`}>Our Specials ...</h1>
           <div className={styles.specials_container}>
             <SpecialsCarousel title='Food' specials={specialsFood}></SpecialsCarousel>
             <SpecialsCarousel title='Drinks' specials={specialsDrink}></SpecialsCarousel>
           </div>
-          <TornEdge className={styles.border_bottom}></TornEdge>
+          <TornBorder top={false}/>
         </section>
     </main>
     </>

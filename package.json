@@ -9,16 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@svgr/webpack": "^8.1.0",
     "embla-carousel-react": "^8.6.0",
     "next": "15.2.2",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "react-slick": "^0.30.3",
-    "slick-carousel": "^1.8.1"
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@svgr/webpack": "^8.1.0",
     "@tailwindcss/postcss": "^4",
     "eslint": "^9",
     "eslint-config-next": "15.2.2",

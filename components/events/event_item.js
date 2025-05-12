@@ -4,8 +4,7 @@ import styles from './event_item.module.css';
 import EventIcons from './event_icons';
 import { rubikFont } from '@/lib/fonts';
 
-
-import TornBackground from '@/public/assets/patterns/torn_background.svg';
+import TornBackgroundSVG from '../assets/patterns/torn_background_SVG';
 
 
 export default function EventItem({ props, isReversed }) {
@@ -34,7 +33,7 @@ export default function EventItem({ props, isReversed }) {
 
   return (
     <div className={`${styles.container} ${isReversed ? styles.reversed : ""}`}>
-        <TornBackground className={styles.event_bg}/>
+        <TornBackgroundSVG className={styles.event_bg}/>
         <div className={styles.content}>
           <h1 className={`${rubikFont.className} ${styles.event_title}`}>{title}</h1>
           <Image src={img} className={styles.image} width={300} height={450} alt={alt}></Image>

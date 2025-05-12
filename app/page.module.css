@@ -46,6 +46,7 @@
 
 .about {
     display: flex;
+    padding-bottom: 3rem;
     justify-content: center;
     position: relative;
     width: 100%;
@@ -56,6 +57,7 @@
     position: relative;
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 .content_background {
@@ -65,7 +67,7 @@
 .about_text {
     color: var(--color-grey-light-3);
     text-align: center;
-    padding: 4rem 2rem;
+    padding: 4rem 0;
 }
 
 .about_title {
@@ -92,20 +94,19 @@
 
 .about_text p {
     position: relative;
-    font-size: 1.8rem;
-    text-align: justify;
+    font-size: 2rem;
+    text-align: left;
+    padding: 1rem 2.5rem;
 }
 
-.vid_background{
+.vid_container {
     position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 53rem;
-    width: 100%;
-    border-top-right-radius: 2rem;
-    border-top-left-radius: 2rem;
-    background-image: linear-gradient(
+    overflow: hidden;
+    height: 55rem;
+    width: 35rem;
+    border: 2rem solid;
+    border-image-slice: 1;
+    border-image-source: linear-gradient(
         to top,
         var(--color-pink),
         var(--color-orange),
@@ -113,30 +114,22 @@
     );
 }
 
-.vid_container {
-    overflow: hidden;
-    height: 50rem;
-    width: 35rem;
-    border-radius: 1rem;
-}
-
 @media (min-width: 1024px) {
     .about {
-        padding: 10rem 0;
+        padding: 8rem 0;
     }
 
     .about_content {
         flex-direction: row;
         justify-content: center;
-        align-items: center;
     }
 
     .content_background {
         position: absolute;
         display: block;
-        top: 2.5rem;
-        height: 50rem;
-        width: 125rem;
+        width: 128rem;
+        transform: scale(-1, 1);
+        fill: var(--color-grey-dark-4);
     }
 
     .about_text {
@@ -194,7 +187,7 @@
 
 @media (min-width: 1024px) {
     .event {
-        padding: 10rem 0;
+        padding: 6rem 0 12rem;
     }
 
     .event_title {
@@ -245,6 +238,10 @@
         padding: 10rem 0;
     }
 
+    .specials_title{
+        font-size: 5rem;
+    }
+
     .specials_title::before {
         content: "";
         position: absolute;
@@ -266,33 +263,3 @@
     }
 
 }
-
-
-/* ///// Torn edge ///// */
-
-.border_top {
-    display: none;
-}
-.border_bottom {
-    display: none;
-}
-
-@media (min-width: 1024px){
-    .border_top {
-        display: block;
-        position: absolute;
-        bottom: 99%;
-        width: 100%;
-        fill: var(--color-grey-dark-1);
-    }
-
-    .border_bottom {
-        display: block;
-        position: absolute;
-        top: 100%;
-        width: 100%;
-        fill: var(--color-grey-dark-1);
-        transform: rotate(180deg);
-    }
-}
-
