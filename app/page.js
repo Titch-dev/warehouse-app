@@ -6,11 +6,9 @@ import SpecialsCarousel from "@/components/specials/specials_carousel";
 import { events, specialsFood, specialsDrink } from "@/data/synthetic_data";
 import { rubikFont } from "@/lib/fonts";
 import { getSortedFutureEvents } from "@/lib/events";
+import { colors } from "@/lib/colors";
 
 import TornBackgroundSVG from "@/components/assets/patterns/torn_background_SVG";
-import TornBorderSVG from "@/components/assets/patterns/torn_border_SVG";
-import TornBorderMobSVG from "@/components/assets/patterns/torn_border_mob_SVG";
-
 import TornBorder from "@/components/assets/patterns/torn_border";
  
 import Logo from "@/public/assets/wh_logo.svg";
@@ -32,7 +30,7 @@ export default function Home() {
         </section>
 
         <section className={styles.about}>
-          <TornBorder top={true}/>
+          <TornBorder top={true} fill={colors.greydark1}/>
           <div className={styles.about_content}>
             <TornBackgroundSVG className={styles.content_background} />
             <div className={styles.about_text}>
@@ -51,7 +49,7 @@ export default function Home() {
                 </video>
               </div>
           </div>
-          <TornBorder top={false}/>
+          <TornBorder top={false} fill={colors.greydark1}/>
         </section>
 
        
@@ -65,13 +63,13 @@ export default function Home() {
         
         <section className={styles.specials}>
 
-          <TornBorder top={true}/>
+          <TornBorder top={true} fill={colors.greydark1}/>
           <h1 className={`${styles.specials_title} ${rubikFont.className}`}>Our Specials ...</h1>
           <div className={styles.specials_container}>
             <SpecialsCarousel title='Food' specials={specialsFood}></SpecialsCarousel>
             <SpecialsCarousel title='Drinks' specials={specialsDrink}></SpecialsCarousel>
           </div>
-          <TornBorder top={false}/>
+          <TornBorder top={false} fill={colors.greydark1}/>
         </section>
     </main>
     </>

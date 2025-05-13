@@ -1,9 +1,10 @@
-const TornBorderMobSVG = ({className, children}) => (
+const TornBorderMobSVG = ({className, color, children}) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     xmlSpace="preserve"
     viewBox="0 0 57.545 3.444"
     className={className}
+    fill={color}
   >
     <def>
         {children}

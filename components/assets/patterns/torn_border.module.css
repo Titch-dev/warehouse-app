@@ -1,7 +1,6 @@
 .border {
     position: absolute;
     width: 100%;
-    fill: var(--color-grey-dark-1);
 }
 
 .top {
