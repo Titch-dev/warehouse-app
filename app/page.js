@@ -30,7 +30,7 @@ export default function Home() {
         </section>
 
         <section className={styles.about}>
-          <TornBorder top={true} fill={colors.greydark1}/>
+          <TornBorder top={true} color={colors.greydark1}/>
           <div className={styles.about_content}>
             <TornBackgroundSVG className={styles.content_background} />
             <div className={styles.about_text}>
@@ -49,7 +49,7 @@ export default function Home() {
                 </video>
               </div>
           </div>
-          <TornBorder top={false} fill={colors.greydark1}/>
+          <TornBorder top={false} color={colors.greydark1}/>
         </section>
 
        
@@ -63,13 +63,13 @@ export default function Home() {
         
         <section className={styles.specials}>
 
-          <TornBorder top={true} fill={colors.greydark1}/>
+          <TornBorder top={true} color={colors.greydark1}/>
           <h1 className={`${styles.specials_title} ${rubikFont.className}`}>Our Specials ...</h1>
           <div className={styles.specials_container}>
             <SpecialsCarousel title='Food' specials={specialsFood}></SpecialsCarousel>
             <SpecialsCarousel title='Drinks' specials={specialsDrink}></SpecialsCarousel>
           </div>
-          <TornBorder top={false} fill={colors.greydark1}/>
+          <TornBorder top={false} color={colors.greydark1}/>
         </section>
     </main>
     </>

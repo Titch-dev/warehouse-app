@@ -92,8 +92,8 @@ export default function ContactForm() {
           </div>
 
         <div className={styles.form_actions}>
-            <button type="reset" className={styles.btn_flat}>Reset</button>
-            <button type='submit' className={styles.btn}>Submit</button>
+            <button type="reset" className={styles.btn_flat}>reset</button>
+            <button type='submit' className={styles.btn}>submit</button>
         </div>
         </form>
   )

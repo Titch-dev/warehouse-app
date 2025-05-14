@@ -4,7 +4,7 @@ import styles from './modal.module.css';
 
 
 export default function Modal({ isOpen, onClose, children }) {
-  
+  // TODO - close on background click
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';

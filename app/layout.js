@@ -3,7 +3,7 @@ import Footbar from "@/components/footer/footbar";
 import "./globals.css";
 
 
-import { latoFont } from "@/lib/fonts";
+import { spartanFont } from "@/lib/fonts";
 import styles from './layout.module.css';
 
 export const metadata = {
@@ -14,7 +14,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={latoFont.className}>
+      <body className={spartanFont.className}>
         <header className={styles.header}>
           <Navbar/> 
         </header>
@@ -22,7 +22,7 @@ export default function RootLayout({ children }) {
             {children}
           </div>
         <footer className={styles.footer}>
-          <Footbar/>
+          {/* <Footbar/> */}
         </footer>
       </body>
     </html>

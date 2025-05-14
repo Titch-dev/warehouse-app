@@ -7,13 +7,14 @@ import TornBorder from '../assets/patterns/torn_border';
 import { colors } from '@/lib/colors';
 
 export default function Contact() {
+
   return (
     <div className={styles.container}>
-        <TornBorder top={true} color={colors.greydark1}/>
+        <TornBorder top={true} color={colors.greydark4}/>
         <div className={styles.content}>
             <h1 className={`${styles.title} ${rubikFont.className}`}>Contact Us</h1>
             <p>Got questions or want to book a spot? Fill out the contact form 
-                on the right and we’ll get back to you ASAP. You can also DM us 
+                and we’ll get back to you ASAP. You can also DM us 
                 on Facebook or Instagram for quick replies, event updates, and 
                 behind-the-scenes vibes. We’re just a message away—let’s connect!</p>
             <Socials size={40}/>
@@ -25,7 +26,7 @@ export default function Contact() {
             </div>
         </div>
         <ContactForm/>
-        <TornBorder top={false} color={colors.greydark1}/>
+        <TornBorder top={false} color={colors.greydark4}/>
     </div>
   )
 }
