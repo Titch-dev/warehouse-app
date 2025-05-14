@@ -4,7 +4,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding-top: 20rem;
+    padding-top: 15rem;
     background-color: var(--color-grey-dark-1);
     background: linear-gradient(
         to bottom,
@@ -29,7 +29,7 @@
     display: inline;
     color: var(--color-grey-light-3);
     font-size: 4rem;
-    margin-bottom: 10rem;
+    margin-bottom: 5rem;
 }
 
 

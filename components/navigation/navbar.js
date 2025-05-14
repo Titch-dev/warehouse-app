@@ -4,15 +4,18 @@ import Link from "next/link";
 import { useState, useEffect } from 'react';
 
 import NavItem from "./navitem";
+import Modal from "../modal";
 
 import styles from "./navbar.module.css";
 
 import LogoImg from "@/public/assets/wh_logo.svg";
+import Contact from "../contact/contact";
 
 export default function Navbar() {
     const [isHidden, setIsHidden] = useState(false);
     const [lastScrollY, setLastScrollY] = useState(0);
     const [hasScrolled, setHasScrolled] = useState(false); // Track if user has scrolled
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -53,7 +56,7 @@ export default function Navbar() {
                     <NavItem href="/events">Events</NavItem>
                     <NavItem href="/menu">Menus</NavItem>
                     <NavItem href="/gallery">Gallery</NavItem>
-                    <NavItem href="/contact">Contact Us</NavItem>
+                    <button onClick={() => setIsModalOpen(true)}>Contact Us</button>
                 </div>
                 <div className={styles.login_button}>
                     <Link href="/login" className={styles.login_button__label}>
@@ -71,6 +74,9 @@ export default function Navbar() {
                     </Link>
                 </div>
             </nav>
+            <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} >
+                <Contact/>
+            </Modal>
         </div>
     );    
 }

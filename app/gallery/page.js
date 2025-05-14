@@ -14,6 +14,7 @@ import TornBorder from "@/components/assets/patterns/torn_border";
 
 import styles from "./page.module.css";
 import { rubikFont } from "@/lib/fonts";
+import { colors } from "@/lib/colors";
 
 
 
@@ -83,7 +84,7 @@ export default function GalleryPage() {
         <button onClick={scrollNext} className={styles.btn}>
           <Chevron direction="right" />
         </button>
-        <TornBorder top={false}/>
+        <TornBorder top={false} color={colors.greydark1}/>
       </section>
       
       

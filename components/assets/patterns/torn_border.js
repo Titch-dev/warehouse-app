@@ -2,7 +2,7 @@ import TornBorderMobSVG from "./torn_border_mob_SVG";
 import TornBorderSVG from "./torn_border_SVG";
 import styles from "./torn_border.module.css";
 
-export default function TornBorder({top}) {
+export default function TornBorder({top, color}) {
   return (
     <>
         <TornBorderMobSVG 
@@ -11,6 +11,7 @@ export default function TornBorder({top}) {
                 ${styles.mobile} 
                 ${top===false ? styles.bottom : styles.top}`
             }
+            color={color}
         />
         <TornBorderSVG 
             className={
@@ -18,6 +19,7 @@ export default function TornBorder({top}) {
                  ${styles.desktop}
                  ${top===false ? styles.bottom : styles.top}`
             }
+            color={color}
         />
     </>
   )

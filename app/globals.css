@@ -47,6 +47,14 @@
   /* Box shadow */
   --shadow-dark: 10px 10px 25px black;
   --shadow-light: 0px 0px 20px white;
+
+
+  --color-grad-right: linear-gradient(
+        to right,
+        var(--color-pink),
+        var(--color-orange),
+        var(--color-yellow)
+    );
 }
 
 *,
@@ -65,8 +73,9 @@ html {
 body {
   width: 100vw;
   min-height: 100vh;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 1.6rem;
+  font-family: Helvetica, sans-serif;
+  font-size: 1.8rem;
   line-height: 1.7;
   background-color: var(--color-grey-light-3);
+  color: var(--color-grey-light-3);
 }

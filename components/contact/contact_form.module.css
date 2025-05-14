@@ -1,0 +1,111 @@
+.form {
+  width: 100%;
+  padding: 2rem;
+}
+
+.control {
+  margin-bottom: 1rem;
+}
+
+.control input,
+.control textarea {
+  display: block;
+  padding: .5rem 1rem;
+  cursor: pointer;
+  color: var(--color-grey-dark-4);
+  background-color: var(--color-grey-dark-2);
+  border: 2px solid var(--color-grey-light-3);
+  border-radius: .4rem;
+}
+
+.control textarea {
+    width: 100%;
+    height: 20rem;
+}
+  
+.control input:focus,
+.control textarea:focus {
+    display: block;
+    outline: none;
+    border-image-slice: 1;
+    border-width: 2px;
+    border-image-source: var(--color-grad-right);
+}
+
+.control label {
+  display: block;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: var(--color-grey-dark-3);
+}
+
+.control label span {
+    float: right;
+    text-transform: none;
+}
+
+.control_error {
+  color: var(--color-orange);
+  font-size: 1.3rem;
+  height: 2rem;
+  padding: 0.5rem 0;
+}
+
+.form_actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 3rem;
+  gap: 3rem;
+}
+
+.btn{
+  padding: 0.5rem 2rem;
+  border-radius: 4px;
+  border: 2px solid var(--color-grey-light-3);
+  color: var(--color-grey-light-3);
+  cursor: pointer;
+}
+
+.btn:hover {
+    border-width: 2px;
+    border-image-slice: 1;
+    border-image-source: var(--color-grad-right);
+}
+
+.btn:active,
+.btn_flat:active {
+    background: var(--color-grad-right);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.btn_flat {
+  cursor: pointer;
+  color: var(--color-grey-dark-3);
+}
+
+.btn_flat:hover {
+  color: var(--color-grey-dark-2);
+}
+
+@media (min-width:1024px){
+  .form {
+    width: 45rem;
+    padding: 4rem;
+  }
+
+  .control {
+    margin-bottom: 2rem;
+  }
+
+  .control_error {
+    font-size: 1.4rem;
+  }
+
+  .form_actions {
+  gap: 5rem;
+  }
+
+}
