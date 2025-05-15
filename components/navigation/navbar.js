@@ -59,7 +59,7 @@ export default function Navbar() {
                     <button onClick={() => setIsModalOpen(true)}>Contact Us</button>
                 </div>
                 <div className={styles.login_button}>
-                    <Link href="/login" className={styles.login_button__label}>
+                    <Link href="/auth" className={styles.login_button__label}>
                         <svg className={styles.login_button__icon} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                             <defs>
                                 <linearGradient id="Gradient1" x2="0" y2="1">

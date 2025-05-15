@@ -19,7 +19,6 @@ export default function Socials({ size }) {
                 </linearGradient>
             </InstagramSVG>
         </Link>
-        
         <Link href={fBUrl} target='_blank'>
             <FacebookSVG className={styles.icon} width={size} height={size}>
                 <linearGradient id="Gradient1" x2="0" y2="1">
