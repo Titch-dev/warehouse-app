@@ -25,14 +25,19 @@ export default function Footbar() {
       <TornBorder top={true} color={colors.greydark4} />
       <div className={styles.container}>
         <div className={styles.content}>
-          <WHLogo className={styles.logo} />
+          <div className={styles.logo_container}>
+            <WHLogo className={styles.logo}/>
+            <Socials size={30}/>
+          </div>
           <div className={styles.nav_container}>
             <h2>Navigation</h2>
-            <Link href="/">Home</Link>
-            <Link href="/events">Events</Link>
-            <Link href="/menu">Menus</Link>
-            <Link href="/gallery">Gallery</Link>
-            <Link href="/login">Login</Link>
+            <div className={styles.nav_grid}>
+              <Link href="/">Home</Link>
+              <Link href="/events">Events</Link>
+              <Link href="/menu">Menus</Link>
+              <Link href="/gallery">Gallery</Link>
+              <Link href="/login">Login</Link>
+            </div>
           </div>
           <div className={styles.list}>
             <button 
@@ -62,10 +67,9 @@ export default function Footbar() {
         </div>
         <div className={`${styles.content} ${styles.content_border}`}>
           <p className={styles.copy_right}>&copy; 2025 The Westville Warehouse</p>
-          <Socials size={30}/>
         </div>
       </div>
-      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} >
+      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
         <Contact/>
       </Modal>
     </div>
