@@ -15,9 +15,17 @@ export default function LoginForm({ onSwitchView }) {
     const [inputValues, setInputValues] = useState({
         email: '',
         password: ''
-        // TODO: extend for keep checked-in
     })
+
+    const [didEdit, setDidEdit] = useState({
+        email: false,
+        password: false
+    })
+
     const [showPassword, setShowPassword] = useState(false);
+
+    const emailIsInvalid = didEdit.email && !inputValues.email.includes('@');
+    const passwordIsEmpty = didEdit.password && inputValues.password === '';
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -29,8 +37,19 @@ export default function LoginForm({ onSwitchView }) {
             ...prevValues,
             [identifier]: value
         }));
-    } 
 
+        setDidEdit((prevEdit) => ({
+            ...prevEdit,
+            [identifier]: false
+        }))
+    }
+
+    function handleBlur(identifier) {
+        setDidEdit((prevEdit) => ({
+            ...prevEdit,
+            [identifier]: true
+        }))
+    }
 
   return (
     <form onSubmit={handleSubmit} className={styles.form}>
@@ -39,14 +58,19 @@ export default function LoginForm({ onSwitchView }) {
             <input
                 name='email'
                 type='email'
+                onBlur={() => handleBlur('email')}
                 onChange={(event) => handleChange('email', event.target.value)}
                 value={inputValues.email}/>
+            <div className={styles.control_error}>
+                {emailIsInvalid && <p>Please enter a valid email address</p>}
+            </div>
         </div>
         <div className={`${styles.control} ${styles.control_icon}`}>
             <label htmlFor='password'>Password:</label>
             <input
                 name='password'
                 type={showPassword ? 'text' : 'password'}
+                onBlur={() => handleBlur('password')}
                 onChange={(event) => handleChange('password', event.target.value)}
                 value={inputValues.password}/>
             <button 
@@ -54,6 +78,9 @@ export default function LoginForm({ onSwitchView }) {
                 onClick={() => setShowPassword(prev => !prev)}>
                     {showPassword ? <EyeOpen/> : <EyeClosed/>}
             </button>
+            <div className={styles.control_error}>
+                {passwordIsEmpty && <p>Please enter your password</p> }
+            </div>
         </div>
         <button 
             type='button' 

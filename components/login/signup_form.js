@@ -12,9 +12,23 @@ export default function SignupForm({ onSwitchView }) {
         sName: '',
         email: '',
         password: '',
-        passswordConfirm: ''
+        passwordConfirm: ''
     })
+
+    const [didEdit, setDidEdit] = useState({
+        fName: false,
+        sName: false,
+        email: false,
+        password: false,
+        passwordConfirm: false
+    })
+
     const [showPassword, setShowPassword] = useState(false);
+
+    const fNameIsInvalid = didEdit.fName && inputValues.fName === '';
+    const sNameIsInvalid = didEdit.sName && inputValues.sName === '';
+    const emailIsInvalid = didEdit.email && !inputValues.email.includes('@');
+    const passwordMatchInvalid = didEdit.passwordConfirm && inputValues.password !== inputValues.passwordConfirm;
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -26,7 +40,14 @@ export default function SignupForm({ onSwitchView }) {
             ...prevValues,
             [identifier]: value
         }));
-    } 
+    }
+    
+    function handleBlur(identifier) {
+        setDidEdit((prevEdit) => ({
+            ...prevEdit,
+            [identifier]: true
+        }))
+    }
   return (  
     <form onSubmit={handleSubmit} className={styles.form}>
         <div className={styles.field_row}>
@@ -35,25 +56,37 @@ export default function SignupForm({ onSwitchView }) {
                 <input
                     name='f_name'
                     type='text'
+                    onBlur={() => handleBlur('fName')}
                     onChange={(event) => handleChange('fName', event.target.value)}
                     value={inputValues.fName}/>
+                <div className={styles.control_error}>
+                    {fNameIsInvalid && <p>Please enter your first name</p>}
+                </div>
             </div>
             <div className={styles.control}>
                 <label htmlFor="s_name">Surame:</label>
                 <input
                     name='s_name'
                     type='text'
+                    onBlur={() => handleBlur('sName')}
                     onChange={(event) => handleChange('sName', event.target.value)}
                     value={inputValues.sName}/>
+                <div className={styles.control_error}>
+                    {sNameIsInvalid && <p>Please enter your surname</p>}
+                </div>
             </div>
         </div>
-        <div className={`${styles.control} ${styles.align}`}>
+        <div className={styles.control}>
             <label htmlFor="email">Email:</label>
             <input
                 name='email'
                 type='email'
+                onBlur={() => handleBlur('email')}
                 onChange={(event) => handleChange('email', event.target.value)}
                 value={inputValues.email}/>
+            <div className={styles.control_error}>
+                {emailIsInvalid && <p>Please enter a valid email address</p>}
+            </div>
         </div>
         <div className={styles.field_row}>
             <div className={`${styles.control} ${styles.control_icon}`}>
@@ -74,15 +107,20 @@ export default function SignupForm({ onSwitchView }) {
                 <input
                     name='password_confirm'
                     type={showPassword ? 'text' : 'password'}
+                    onBlur={() => handleBlur('passwordConfirm')}
                     onChange={(event) => handleChange('passwordConfirm', event.target.value)}
-                    value={inputValues.password}/>
+                    value={inputValues.passwordConfirm}/>
                 <button 
                     className={styles.btn_icon} 
                     onClick={() => setShowPassword(prev => !prev)}>
                         {showPassword ? <EyeOpen/> : <EyeClosed/>}
                 </button>
+                <div className={styles.control_error}>
+                    {passwordMatchInvalid && <p>Your password doesn't match</p>}
+                </div>
             </div>
         </div>
+        
         <SocialsLogin formName={"Signup"}/>
         
 

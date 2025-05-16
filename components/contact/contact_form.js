@@ -92,7 +92,7 @@ export default function ContactForm() {
           </div>
 
         <div className={styles.form_actions}>
-            <button type='submit' className={styles.btn}>submit</button>
+            <button type='submit' className={styles.btn}>Send</button>
         </div>
         </form>
   )

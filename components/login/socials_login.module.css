@@ -1,5 +1,9 @@
 .container {
+    display: flex;
+    flex-direction: column;
     margin: 2.5rem;
+    gap: 1.5rem;
+    width: 100%;
 }
 
 .container button {
@@ -11,11 +15,12 @@
     border: 2px solid var(--color-grey-light-3);
     border-radius: .4rem;
     margin-bottom: 1rem;
+    cursor: pointer;
 }
 
-.container p {
-    width: 100%;
+.container button p{
     text-align: center;
+    width: 100%;
 }
 
 .container button:hover p {
@@ -42,4 +47,10 @@
 
 .stop3 {
     stop-color: var(--color-yellow);
+}
+
+@media (min-width:1024px){
+    .container {
+        flex-direction: row;
+    }
 }
