@@ -22,7 +22,7 @@ export default function RootLayout({ children }) {
             {children}
           </div>
         <footer className={styles.footer}>
-          {/* <Footbar/> */}
+          <Footbar/>
         </footer>
       </body>
     </html>

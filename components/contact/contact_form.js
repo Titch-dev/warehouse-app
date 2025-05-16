@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-import styles from './contact_form.module.css'
+import styles from '@/components/styles/form.module.css';
 
 
 export default function ContactForm() {
@@ -92,8 +92,7 @@ export default function ContactForm() {
           </div>
 
         <div className={styles.form_actions}>
-            <button type="reset" className={styles.btn_flat}>reset</button>
-            <button type='submit' className={styles.btn}>submit</button>
+            <button type='submit' className={styles.btn}>Send</button>
         </div>
         </form>
   )

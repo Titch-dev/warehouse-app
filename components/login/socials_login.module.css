@@ -1,0 +1,56 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    margin: 2.5rem;
+    gap: 1.5rem;
+    width: 100%;
+}
+
+.container button {
+    display: flex;
+    gap: 2rem;
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+    border: 2px solid var(--color-grey-light-3);
+    border-radius: .4rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+}
+
+.container button p{
+    text-align: center;
+    width: 100%;
+}
+
+.container button:hover p {
+    color: var(--color-grey-dark-3);
+}
+
+.icon{
+    width: 3rem;
+    height: 3rem;
+    fill: currentColor;
+}
+
+.container button:hover .icon{
+    fill: url(#Gradient1);
+}
+
+.stop1 {
+    stop-color: var(--color-pink);
+}
+
+.stop2 {
+    stop-color: var(--color-orange);
+}
+
+.stop3 {
+    stop-color: var(--color-yellow);
+}
+
+@media (min-width:1024px){
+    .container {
+        flex-direction: row;
+    }
+}
