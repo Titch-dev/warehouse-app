@@ -1,5 +1,7 @@
 .header {
+    position: relative;
     background-color: var(--color-grey-dark-1);
+    z-index: 9998;
 }
 
 .wrapper{
