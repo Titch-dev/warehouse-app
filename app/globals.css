@@ -55,6 +55,13 @@
         var(--color-orange),
         var(--color-yellow)
     );
+
+  --color-grad-bottom: linear-gradient(
+      to bottom,
+      var(--color-pink),
+      var(--color-orange),
+      var(--color-yellow)
+    );
 }
 
 *,

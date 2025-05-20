@@ -1,21 +1,25 @@
 'use client'
 
 import Link from "next/link";
-import { useState, useEffect } from 'react';
+import { usePathname } from "next/navigation";
+import { useState, useEffect } from "react";
 
-import NavItem from "./navitem";
 import Modal from "../modal";
+import Contact from "../contact/contact";
 
 import styles from "./navbar.module.css";
-
-import LogoImg from "@/public/assets/wh_logo.svg";
-import Contact from "../contact/contact";
+import LogoSVG from "@/components/assets/whLogoSVG";
+import UserRegularSVG from '@/components/assets/icons/user_regularSVG';
 
 export default function Navbar() {
     const [isHidden, setIsHidden] = useState(false);
     const [lastScrollY, setLastScrollY] = useState(0);
     const [hasScrolled, setHasScrolled] = useState(false); // Track if user has scrolled
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [burgerOpen, setBurgerOpen] = useState(false);
+    const [navOpen, setNavOpen] = useState(false);
+    const pathname = usePathname();
+
 
     useEffect(() => {
         const handleScroll = () => {
@@ -38,45 +42,107 @@ export default function Navbar() {
         return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY, hasScrolled]);
 
+    const handleNavMenu = () => {
+        setBurgerOpen(prev => !prev);
+        setNavOpen(prev => !prev);
+    }
+
+    const handleNavClose = () => {
+        setBurgerOpen(false);
+        setNavOpen(false);
+    }
+
 
 
     return(
-        <div className={`${styles.container} ${isHidden ? `${styles.hidden_navbar}` : ""}`}>
-            <nav className={styles.navbar}>
-                <Link href="/">
-                    <LogoImg className={styles.navbar_logo}>
-                        <linearGradient id="Gradient1" x2="0" y2="1">
-                            <stop className={styles.stop1} offset="0%" />
-                            <stop className={styles.stop2} offset="50%" />
-                            <stop className={styles.stop3} offset="100%" />
-                        </linearGradient>
-                    </LogoImg>
-                </Link>
-                <div className={styles.navbar_links}>
-                    <NavItem href="/events">Events</NavItem>
-                    <NavItem href="/menu">Menus</NavItem>
-                    <NavItem href="/gallery">Gallery</NavItem>
-                    <button onClick={() => setIsModalOpen(true)}>Contact Us</button>
-                </div>
-                <div className={styles.login_button}>
-                    <Link href="/auth" className={styles.login_button__label}>
-                        <svg className={styles.login_button__icon} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                            <defs>
+        <>
+            <div className={styles.wrapper}>
+                <div className={`${styles.container}`}>
+                    <div onClick={handleNavClose}>
+                        <Link href='/'>
+                            <LogoSVG className={styles.logo}>
                                 <linearGradient id="Gradient1" x2="0" y2="1">
                                     <stop className={styles.stop1} offset="0%" />
                                     <stop className={styles.stop2} offset="50%" />
                                     <stop className={styles.stop3} offset="100%" />
                                 </linearGradient>
-                            </defs>
-                            <path d="M406.5 399.6C387.4 352.9 341.5 320 288 320l-64 0c-53.5 0-99.4 32.9-118.5 79.6C69.9 362.2 48 311.7 48 256C48 141.1 141.1 48 256 48s208 93.1 208 208c0 55.7-21.9 106.2-57.5 143.6zm-40.1 32.7C334.4 452.4 296.6 464 256 464s-78.4-11.6-110.5-31.7c7.3-36.7 39.7-64.3 78.5-64.3l64 0c38.8 0 71.2 27.6 78.5 64.3zM256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-272a40 40 0 1 1 0-80 40 40 0 1 1 0 80zm-88-40a88 88 0 1 0 176 0 88 88 0 1 0 -176 0z"/>
-                        </svg>
-                        <p>Login</p>
-                    </Link>
+                            </LogoSVG>
+                        </Link> 
+                    </div>  
+                    <button 
+                        className={`${styles.burger} ${burgerOpen ? styles.open : ''}`}
+                        onClick={handleNavMenu}>
+                            <span/>
+                            <span/>
+                            <span/>
+                            <span/>
+                    </button>
+                    <nav className={`${styles.navbar} ${navOpen ? styles.show : ''}`}>
+                        <div className={styles.nav_links}>
+                            <div onClick={handleNavClose}>
+                                <Link 
+                                    href='/events' 
+                                    className={`
+                                        ${styles.nav_item} 
+                                        ${pathname === '/events' && !isModalOpen
+                                        ? styles.active : ''}`}>
+                                    <p>Events</p>
+                                </Link>
+                            </div>
+                            <div onClick={handleNavClose}>
+                                <Link 
+                                    href='/menu' 
+                                    className={`
+                                        ${styles.nav_item} 
+                                        ${pathname === '/menu' && !isModalOpen
+                                        ? styles.active : ''}`}>
+                                    <p>Menus</p>
+                                </Link>
+                            </div>
+                            <div onClick={handleNavClose}>
+                                <Link 
+                                    href='/gallery' 
+                                    className={`
+                                        ${styles.nav_item} 
+                                        ${pathname === '/gallery' && !isModalOpen
+                                        ? styles.active : ''}`}>
+                                    <p>Gallery</p>
+                                </Link>
+                            </div>
+                            <div onClick={handleNavClose}>
+                                <button 
+                                    className={`
+                                        ${styles.nav_item} 
+                                        ${isModalOpen ? styles.active : ''}`}
+                                    onClick={() => setIsModalOpen(true)}>
+                                    <p>Contact Us</p>
+                                </button>
+                            </div>
+                        </div>
+                        <div className={styles.login} onClick={handleNavClose}>
+                            <Link 
+                                href='/auth' 
+                                className={`
+                                    ${styles.nav_item} 
+                                    ${pathname === '/auth' && !isModalOpen
+                                    ? styles.active : ''}`}>
+                                <UserRegularSVG className={styles.login_svg}>
+                                    <linearGradient id="Gradient1" x2="0" y2="1">
+                                        <stop className={styles.stop1} offset="0%" />
+                                        <stop className={styles.stop2} offset="50%" />
+                                        <stop className={styles.stop3} offset="100%" />
+                                    </linearGradient>   
+                                </UserRegularSVG>
+                                <p>Login</p>
+                            </Link>
+                        </div>
+                    </nav>
                 </div>
-            </nav>
+            </div>
             <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} >
                 <Contact/>
             </Modal>
-        </div>
+        </>
+        
     );    
 }

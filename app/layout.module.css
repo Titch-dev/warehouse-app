@@ -1,10 +1,10 @@
 .header {
-    background-color: var(--color-grey-dark-1);
+    position: relative;
+    z-index: 9997;
 }
 
 .wrapper{
 }
 
 .footer {
-    background-color: var(--color-grey-dark-1);
 }

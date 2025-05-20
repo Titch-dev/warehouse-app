@@ -1,70 +1,30 @@
-.container{
+.wrapper{
     position: fixed;
-    top: 0;
-    left: 0;
+    display: flex;
     width: 100%;
-    background-color: var(--color-grey-dark-1);
-    z-index: 20;
+    height: 5rem;
+    background-color: var(--color-grey-dark-4);
+    z-index: 9996;
+}
+
+.container{
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
     transition: transform 0.3s ease-in-out;
 }
 
-.hidden_navbar {
-    transform: translateY(-100%);
-}
-
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0 auto;
-    max-width: 128rem;
-}
-
-.navbar_logo {
-    height: 8rem;
-    margin: 1rem;
-    fill: url(#Gradient1);
-
-}
-
-.navbar_links {
-    display: flex;
-    width: 50rem;
-    justify-content: space-between;
-    font-size: 1.8rem;
-}
-
-.login_button {
+.logo {
     position: relative;
-}
-
-
-.login_button::before {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 0.2rem;
-    background-image: linear-gradient(
-        to right,
-        var(--color-pink), 
-        var(--color-orange),
-        var(--color-yellow)
-    );
-    transform: scaleX(0);
-    transition: transform .2s ease-in-out;
-}
-
-.login_button:hover::before {
-    transform: scaleX(1);
-}
-
-.login_button__icon {
-    height: 3rem;
-    width: 3rem;
-    margin-right: 1rem;
+    height: 7rem;
+    padding: .5rem;
+    left: 1rem;
     fill: url(#Gradient1);
+    background-color: var(--color-grey-dark-4);
+    border-bottom-left-radius: .5rem;
+    border-bottom-right-radius: .5rem;
+    z-index: 9998;
 }
 
 .stop1 {
@@ -79,26 +39,151 @@
     stop-color: var(--color-yellow);
 }
 
-.login_button__label{
+.burger {
     position: relative;
-    top: 0;
-    display: flex;
-    align-items: center;
-    padding: 8px 10px;
-    font-size: 1.8rem;
-    color: var(--color-grey-light-3);
-    transition: transform .2s .1s,
-                top .2s .1s,
-                color .2s .1s;
+    width: 3.5rem;
+    height: 3.5rem;
+    cursor: pointer;
+    right: 1rem;
+    top: 1rem;
+    transition: all ease-in-out .3s;
+    z-index: 9999;
 }
 
-.login_button__label:hover {
-    top: -2px;
+.burger span {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: .4rem;
+    left: 0;
+    transform: rotate(0deg);
+    opacity: 1;
+    transition: all ease-in-out .3s;
+    border-radius: .4rem;
+}
+
+.burger span:nth-child(1) {
+    top: 0;
+    background-color: var(--color-pink);
+}
+
+.burger span:nth-child(2),
+.burger span:nth-child(3){
+    top: 1.1rem;
+    background-color: var(--color-orange);
+}
+
+.burger span:nth-child(4) {
+    top: 2.2rem;
+    background-color: var(--color-yellow);
+}
+
+.burger.open span:nth-child(1){
+    top: 1.1rem;
+    width: 0%;
+    left: 50%;
+}
+
+.burger.open span:nth-child(2){
+    transform: rotate(45deg);
+}
+.burger.open span:nth-child(3){
+    transform: rotate(-45deg);
+}
+.burger.open span:nth-child(4){
+    top: 1.1rem;
+    width: 0%;
+    left: 50%;
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100dvh;
+    width: 100dvw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--color-grey-dark-4);
+    padding-top: 15rem;
+    transform: translateX(100%);
+    transition: transform ease-in .3s;
+    z-index: 9997;
+    gap: 2rem;
+}
+
+.show {
+    transform: translateX(0);
+}
+
+.nav_links{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 2rem;
+}
+
+.nav_item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    font-size: 2.3rem;
+    gap: 1.7rem;
+}
+
+.nav_item p:hover {
     color: var(--color-grey-dark-3);
 }
 
-.login_button__label:active {
-    top: -1px;
-    color: var(--color-grey-light-1);
-    /* background: linear-gradient(var(--color-pink), var(--color-yellow)); */
+
+.nav_item.active p {
+    background: var(--color-grad-bottom);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.login_svg {
+    width: 3rem;
+    fill: url(#Gradient1);
+}
+
+@media (min-width:1024px) {
+    .wrapper{
+        justify-content: center;
+        height: 7rem;
+    }
+
+    .container{
+        max-width: 128rem;
+    }
+
+    .logo {
+        height: 11rem;
+        padding: 1rem;
+        left: 0;
+        border-bottom-left-radius: 1rem;
+        border-bottom-right-radius: 1rem;
+    }
+
+    .burger {
+        display: none;
+    }
+
+    .navbar {
+        position: relative;
+        height: 7rem;
+        flex-direction: row;
+        justify-content: center;
+        padding: 0;
+        transform: translateX(0);
+    }
+
+    .nav_links {
+        flex-direction: row;
+        gap: 10rem;
+    }
 }

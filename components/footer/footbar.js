@@ -36,7 +36,7 @@ export default function Footbar() {
               <Link href="/events">Events</Link>
               <Link href="/menu">Menus</Link>
               <Link href="/gallery">Gallery</Link>
-              <Link href="/login">Login</Link>
+              <Link href="/auth">Login</Link>
             </div>
           </div>
           <div className={styles.list}>

@@ -2,9 +2,9 @@
 
 import { useState } from 'react';
 
-import LoginForm from '@/components/login/login_form';
-import SignupForm from '@/components/login/signup_form';
-import ForgotPasswordForm from '@/components/login/forgot_password_form';
+import LoginForm from '@/components/auth/login_form';
+import SignupForm from '@/components/auth/signup_form';
+import ForgotPasswordForm from '@/components/auth/forgot_password_form';
 
 import styles from './page.module.css';
 import { rubikFont } from '@/lib/fonts';
