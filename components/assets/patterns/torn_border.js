@@ -3,6 +3,8 @@ import TornBorderSVG from "./torn_border_SVG";
 import styles from "./torn_border.module.css";
 
 export default function TornBorder({top, color}) {
+
+    
   return (
     <>
         <TornBorderMobSVG 

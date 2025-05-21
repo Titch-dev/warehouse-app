@@ -12,35 +12,10 @@ import LogoSVG from "@/components/assets/whLogoSVG";
 import UserRegularSVG from '@/components/assets/icons/user_regularSVG';
 
 export default function Navbar() {
-    const [isHidden, setIsHidden] = useState(false);
-    const [lastScrollY, setLastScrollY] = useState(0);
-    const [hasScrolled, setHasScrolled] = useState(false); // Track if user has scrolled
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [burgerOpen, setBurgerOpen] = useState(false);
     const [navOpen, setNavOpen] = useState(false);
     const pathname = usePathname();
-
-
-    useEffect(() => {
-        const handleScroll = () => {
-            if (!hasScrolled) {
-                setHasScrolled(true); // Allow normal behavior after first scroll
-            }
-
-            if (hasScrolled) {
-                if (window.scrollY > lastScrollY && window.scrollY >= 100) {
-                    setIsHidden(true); // Hide on scroll down
-                } else {
-                    setIsHidden(false); // Show on scroll up
-                }
-            }     
-
-        setLastScrollY(window.scrollY);
-        };
-
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY, hasScrolled]);
 
     const handleNavMenu = () => {
         setBurgerOpen(prev => !prev);
@@ -51,8 +26,6 @@ export default function Navbar() {
         setBurgerOpen(false);
         setNavOpen(false);
     }
-
-
 
     return(
         <>
