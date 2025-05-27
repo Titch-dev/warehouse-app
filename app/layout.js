@@ -16,11 +16,11 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={spartanFont.className}>
         <header className={styles.header}>
-          <Navbar/> 
+          <Navbar/>
         </header>
-          <div className={styles.wrapper}>
-            {children}
-          </div>
+        <div className={styles.wrapper}>
+          {children}
+        </div>
         <footer className={styles.footer}>
           <Footbar/>
         </footer>
