@@ -1,0 +1,27 @@
+.wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100dvw;
+    height: 100%;
+    background-color: var(--color-grey-dark-4);
+}
+
+.container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: var(--color-grey-dark-2);
+}
+
+@media (min-width:1024px) {
+    .wrapper {
+        height: 90dvh;
+        padding-top: 7rem;
+    }
+    
+    .container {
+        flex-direction: row;
+        width: 128rem;
+    }
+}
