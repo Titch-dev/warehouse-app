@@ -11,9 +11,9 @@
     background-color: rgba(0, 0, 0, 0.2);
     backdrop-filter: blur(10px);
     z-index: 50;
+    padding-top: 10rem;
   }
   
-  /* Modal content container (relatively positioned for the close button) */
   .modal {
     position: relative;
     padding: 2rem;
@@ -21,7 +21,6 @@
     max-height: 90vh;
   }
   
-  /* Close button with colorful gradient */
   .close {
     position: absolute;
     top: 1rem;

@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 
-import SocialsLogin from './socials_login';
+import SocialsLogin from '../auth/socials_login';
 
 import EyeOpen from "@/public/assets/icons/eye-regular.svg";
 import EyeClosed from "@/public/assets/icons/eye-slash-regular.svg";
-import styles from "@/components/styles/form.module.css";
+import styles from "./form.module.css";
 
 export default function SignupForm({ onSwitchView }) {
     const [inputValues, setInputValues] = useState({

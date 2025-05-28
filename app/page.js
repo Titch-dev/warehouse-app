@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 import EventItem from "@/components/events/event_item";
 import SpecialsCarousel from "@/components/specials/specials_carousel";
 
@@ -13,6 +11,7 @@ import TornBorder from "@/components/assets/patterns/torn_border";
  
 import Logo from "@/public/assets/wh_logo.svg";
 import styles from "./page.module.css";
+import Link from "next/link";
 
 const todaysDate = "2025-04-29T00:00:00Z";
 
@@ -58,13 +57,16 @@ export default function Home() {
             <div className={styles.event_wrapper}>
               <EventItem props={nextEvent} />
             </div>
+            <Link href='/events'>
+              <button className={styles.event_link}>view more</button>
+            </Link>
         </section>
 
         
         <section className={styles.specials}>
 
           <TornBorder top={true} color={colors.greydark1}/>
-          <h1 className={`${styles.specials_title} ${rubikFont.className}`}>Our Specials ...</h1>
+          <h1 className={`${styles.specials_title} ${rubikFont.className}`}>Our Specials</h1>
           <div className={styles.specials_container}>
             <SpecialsCarousel title='Food' specials={specialsFood}></SpecialsCarousel>
             <SpecialsCarousel title='Drinks' specials={specialsDrink}></SpecialsCarousel>

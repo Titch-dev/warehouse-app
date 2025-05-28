@@ -4,11 +4,11 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 
-import Modal from "../modal";
+import Modal from "../ui/modal";
 import Contact from "../contact/contact";
 
 import styles from "./navbar.module.css";
-import LogoSVG from "@/components/assets/whLogoSVG";
+import LogoSVG from "@/components/assets/logo/whLogoSVG";
 import UserRegularSVG from '@/components/assets/icons/user_regularSVG';
 
 export default function Navbar() {
@@ -29,7 +29,7 @@ export default function Navbar() {
 
     return(
         <>
-            <div className={styles.wrapper}>
+            <header className={styles.wrapper}>
                 <div className={`${styles.container}`}>
                     <div onClick={handleNavClose}>
                         <Link href='/'>
@@ -96,7 +96,7 @@ export default function Navbar() {
                             <Link 
                                 href='/auth' 
                                 className={`
-                                    ${styles.nav_item} 
+                                    ${styles.login_item} 
                                     ${pathname === '/auth' && !isModalOpen
                                     ? styles.active : ''}`}>
                                 <UserRegularSVG className={styles.login_svg}>
@@ -111,7 +111,7 @@ export default function Navbar() {
                         </div>
                     </nav>
                 </div>
-            </div>
+            </header>
             <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} >
                 <Contact/>
             </Modal>

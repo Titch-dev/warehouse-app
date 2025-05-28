@@ -3,7 +3,6 @@
     display: flex;
     justify-content: center;
     background-color: var(--color-grey-dark-4);
-    /* z-index: 1; */
 }
 
 .content {
@@ -26,13 +25,13 @@
 
 .logo_container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    gap: 3rem;
+    gap: 4rem;
 }
 
 .logo {
-    width: 23rem;
+    width: 13rem;
     height: auto;
     fill: currentColor;
 }
@@ -127,6 +126,15 @@
         justify-content: space-around;
         align-items: start;
         margin: 5rem 0;
+    }
+
+    .logo_container {
+        flex-direction: column;
+        gap: 2rem;
+    }
+    
+    .logo {
+        width: 23rem;
     }
 
     .content_border{

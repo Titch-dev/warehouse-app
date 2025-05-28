@@ -73,7 +73,6 @@
     }
     
     .title {
-        font-size: 5rem;
         grid-row: 1 / span 2;
         align-self: center;
     }
@@ -81,7 +80,7 @@
     .content p {
         font-size: 2rem;
         grid-row: 3 / span 3;
-        padding: 0 4rem;
+        padding: 0 0 0 4rem;
     }
     
     .open_times p {

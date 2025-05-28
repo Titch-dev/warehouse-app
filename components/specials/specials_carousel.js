@@ -4,7 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 
 import SpecialsItem from "./specials_item";
-import Chevron from '@/components/navigation/chevron';
+import Chevron from '@/components/assets/icons/chevron';
 
 import styles from "./specials_carousel.module.css";
 import { rubikFont } from "@/lib/fonts";
@@ -44,7 +44,7 @@ export default function SpecialsCarousel({ title, specials }) {
 
   return (
     <div className={styles.wrapper}>
-        <h1 className={`${styles.title} ${rubikFont.className}`}>{`${title}:`}</h1>
+        <h1 className={`${styles.title} ${rubikFont.className}`}>{title}</h1>
         <div className={styles.embla} >
             <button className={styles.btn} onClick={scrollPrev}>
                 <Chevron direction="left"/>
@@ -53,7 +53,7 @@ export default function SpecialsCarousel({ title, specials }) {
                 <div className={styles.embla__container}>
                     {specials.map((special) => (
                         <div key={special.id} className={styles.embla__slide}>
-                            <SpecialsItem key={special.id} item={special} className={styles.embla__slide}/>
+                            <SpecialsItem item={special}/>
                         </div>
                     ))}
                 </div>
