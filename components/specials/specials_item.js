@@ -11,8 +11,8 @@ export default function SpecialsItem({ item }) {
         <div className={`${styles.content} `}>
             <h1 className={`${styles.title} ${rubikFont.className}`}>{item.title}</h1>
             <div className={`${styles.offer_wrap} ${item.offers.length > 2 ? styles.sml_text : styles.lg_text }`}>
-              {item.offers.map((e) => (
-                <div className={styles.offer_line}>
+              {item.offers.map((e, index) => (
+                <div key={index} className={styles.offer_line}>
                     <p>{e.offer}</p>
                     <p>{typeof e.price === 'number'
                         ? `R${e.price}`

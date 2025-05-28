@@ -3,13 +3,13 @@
 import Link from 'next/link';
 import { useState } from 'react';
 
-import Modal from '../modal';
+import Modal from '../ui/modal';
 import Contact from '../contact/contact';
 
 import styles from './footbar.module.css';
 import { colors } from '@/lib/colors';
 
-import WHLogo from '@/components/assets/whLogoSVG';
+import WHLogo from '@/components/assets/logo/whLogoSVG';
 import MapIconSVG from '../assets/icons/mapIconSVG';
 import EnvelopeIcon from '../assets/icons/envelope_IconSVG';
 import TornBorder from '../assets/patterns/torn_border';

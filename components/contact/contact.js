@@ -1,5 +1,5 @@
 import Socials from '../assets/icons/socials';
-import ContactForm from './contact_form';
+import ContactForm from '../forms/contact_form';
 
 import styles from './contact.module.css';
 import { rubikFont } from '@/lib/fonts';

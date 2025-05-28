@@ -1,4 +1,4 @@
-import Navbar from "@/components/navigation/navbar";
+import Navbar from "@/components/header/navbar";
 import Footbar from "@/components/footer/footbar";
 import "./globals.css";
 
@@ -9,7 +9,6 @@ import styles from './layout.module.css';
 export const metadata = {
   title: "Westville Warehouse",
   description: "The Westville Warehouse: Where Durban nightlife comes alive.",
-  themeColor: "#242424",
   icons: {
     icon: [
       { url: "/icons/icon-32x32.png", type: "image/png", sizes: "32x32" },
@@ -20,13 +19,15 @@ export const metadata = {
   manifest: "/manifest.json",
 };
 
+export const viewport = {
+  themeColor: "#242424",
+}
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={spartanFont.className}>
-        <header className={styles.header}>
-          <Navbar/>
-        </header>
+        <Navbar/>
         <div className={styles.wrapper}>
           {children}
         </div>

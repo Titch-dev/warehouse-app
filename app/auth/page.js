@@ -2,9 +2,9 @@
 
 import { useState } from 'react';
 
-import LoginForm from '@/components/auth/login_form';
-import SignupForm from '@/components/auth/signup_form';
-import ForgotPasswordForm from '@/components/auth/forgot_password_form';
+import LoginForm from '@/components/forms/login_form';
+import SignupForm from '@/components/forms/signup_form';
+import ForgotPasswordForm from '@/components/forms/forgot_password_form';
 
 import styles from './page.module.css';
 import { rubikFont } from '@/lib/fonts';
@@ -26,7 +26,6 @@ export default function AuthPage() {
   return (
     <div>
       <div className={styles.wrapper}>
-        <div className={styles.background}></div>
         <div className={styles.container}>
           <h1 className={`${rubikFont.className} ${styles.title}`}>{view}</h1>
           {renderView()}

@@ -5,7 +5,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 
 
-import Chevron from "@/components/navigation/chevron";
+import Chevron from "@/components/assets/icons/chevron";
 
 import { galleryList } from "@/data/synthetic_data";
 

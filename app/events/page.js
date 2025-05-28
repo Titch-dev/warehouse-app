@@ -18,11 +18,9 @@ export default function EventsPage() {
       <h1 className={`${rubikFont.className} ${styles.page_title}`}>Our Events</h1>
       <section className={styles.event_list_wrapper}>
           {eventsList.map((event, index) => (
-            <>
-              <div className={styles.event_wrapper}>
+              <div key={event.id} className={styles.event_wrapper}>
                 <EventItem key={event.id} props={event} isReversed={index % 2 === 1}/>
               </div>
-            </>
           ))}
       </section>
     </div>

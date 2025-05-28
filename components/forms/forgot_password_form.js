@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-import styles from '@/components/styles/form.module.css';
+import styles from './form.module.css';
 
 //       backend - forgot password link
 
