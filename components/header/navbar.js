@@ -2,7 +2,9 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { useLogout } from "@/hooks/useLogout";
+import { useAuthContext } from "@/hooks/useAuthContext";
 
 import Modal from "../ui/modal";
 import Contact from "../contact/contact";
@@ -12,10 +14,12 @@ import LogoSVG from "@/components/assets/logo/whLogoSVG";
 import UserRegularSVG from '@/components/assets/icons/user_regularSVG';
 
 export default function Navbar() {
+    const { user, authIsReady } = useAuthContext();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [burgerOpen, setBurgerOpen] = useState(false);
     const [navOpen, setNavOpen] = useState(false);
     const pathname = usePathname();
+    const { logout } = useLogout();
 
     const handleNavMenu = () => {
         setBurgerOpen(prev => !prev);
@@ -26,6 +30,8 @@ export default function Navbar() {
         setBurgerOpen(false);
         setNavOpen(false);
     }
+
+
 
     return(
         <>
@@ -93,7 +99,7 @@ export default function Navbar() {
                             </div>
                         </div>
                         <div className={styles.login} onClick={handleNavClose}>
-                            <Link 
+                            {authIsReady && !user && <Link 
                                 href='/auth' 
                                 className={`
                                     ${styles.login_item} 
@@ -107,7 +113,9 @@ export default function Navbar() {
                                     </linearGradient>   
                                 </UserRegularSVG>
                                 <p>Login</p>
-                            </Link>
+                            </Link>}
+                            {authIsReady && user && 
+                        <button onClick={logout}>Logout</button>}
                         </div>
                     </nav>
                 </div>

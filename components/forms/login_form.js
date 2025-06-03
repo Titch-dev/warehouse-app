@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react';
+import { useLogin } from '@/hooks/useLogin';
 
 import SocialsLogin from '../auth/socials_login';
 
@@ -9,9 +10,10 @@ import EyeOpen from '@/public/assets/icons/eye-regular.svg';
 import EyeClosed from '@/public/assets/icons/eye-slash-regular.svg';
 
     // TODO: Hookup to backend
-    //       login with facebook and google
+    //       login with facebook
 
 export default function LoginForm({ onSwitchView }) {
+    const { login, error, isPending } = useLogin();
     const [inputValues, setInputValues] = useState({
         email: '',
         password: ''
@@ -29,7 +31,8 @@ export default function LoginForm({ onSwitchView }) {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log(inputValues);
+        login(inputValues.email, inputValues.password);
+        
     }
 
     function handleChange(identifier, value) {
@@ -53,35 +56,39 @@ export default function LoginForm({ onSwitchView }) {
 
   return (
     <form onSubmit={handleSubmit} className={styles.form}>
-        <div className={styles.control}>
-            <label htmlFor="email">Email:</label>
-            <input
-                name='email'
-                type='email'
-                onBlur={() => handleBlur('email')}
-                onChange={(event) => handleChange('email', event.target.value)}
-                value={inputValues.email}/>
-            <div className={styles.control_error}>
-                {emailIsInvalid && <p>Please enter a valid email address</p>}
+        <div className={styles.field_row}>
+            <div className={styles.control}>
+                <label htmlFor="email">Email:</label>
+                <input
+                    name='email'
+                    type='email'
+                    onBlur={() => handleBlur('email')}
+                    onChange={(event) => handleChange('email', event.target.value)}
+                    value={inputValues.email}/>
+                <div className={styles.control_error}>
+                    {emailIsInvalid && <p>Please enter a valid email address</p>}
+                </div>
+            </div>
+            <div className={`${styles.control} ${styles.control_icon}`}>
+                <label htmlFor='password'>Password:</label>
+                <input
+                    name='password'
+                    type={showPassword ? 'text' : 'password'}
+                    onBlur={() => handleBlur('password')}
+                    onChange={(event) => handleChange('password', event.target.value)}
+                    value={inputValues.password}/>
+                <button
+                    type='button'
+                    className={styles.btn_icon} 
+                    onClick={() => setShowPassword(prev => !prev)}>
+                        {showPassword ? <EyeOpen/> : <EyeClosed/>}
+                </button>
+                <div className={styles.control_error}>
+                    {passwordIsEmpty && <p>Please enter your password</p> }
+                </div>
             </div>
         </div>
-        <div className={`${styles.control} ${styles.control_icon}`}>
-            <label htmlFor='password'>Password:</label>
-            <input
-                name='password'
-                type={showPassword ? 'text' : 'password'}
-                onBlur={() => handleBlur('password')}
-                onChange={(event) => handleChange('password', event.target.value)}
-                value={inputValues.password}/>
-            <button 
-                className={styles.btn_icon} 
-                onClick={() => setShowPassword(prev => !prev)}>
-                    {showPassword ? <EyeOpen/> : <EyeClosed/>}
-            </button>
-            <div className={styles.control_error}>
-                {passwordIsEmpty && <p>Please enter your password</p> }
-            </div>
-        </div>
+        
         <button 
             type='button' 
             className={styles.btn_flat}
@@ -89,7 +96,7 @@ export default function LoginForm({ onSwitchView }) {
             onClick={ () => onSwitchView('forgot')}>
                 Forgot password?
         </button>
-        <SocialsLogin formName={"Login"}/>
+        <SocialsLogin />
         
         <button 
             type='button' 
@@ -100,8 +107,11 @@ export default function LoginForm({ onSwitchView }) {
 
 
         <div className={styles.form_actions}>
-            <button type='submit' className={styles.btn}>Login</button>
+            {!isPending && <button type='submit' className={styles.btn}>Login</button>}
+            {isPending && <button className={styles.btn} disabled>Loading</button>}
+            
         </div>
+        {error && <p>{error}</p>}
     </form>
   )
 }

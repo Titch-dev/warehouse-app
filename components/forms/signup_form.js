@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import { useState } from 'react';
+import { useSignup } from '@/hooks/useSignup';
 
 import SocialsLogin from '../auth/socials_login';
 
@@ -7,32 +8,53 @@ import EyeClosed from "@/public/assets/icons/eye-slash-regular.svg";
 import styles from "./form.module.css";
 
 export default function SignupForm({ onSwitchView }) {
+    const { signup, isPending, error } = useSignup();
     const [inputValues, setInputValues] = useState({
-        fName: '',
-        sName: '',
+        name: '',
         email: '',
         password: '',
         passwordConfirm: ''
     })
-
     const [didEdit, setDidEdit] = useState({
-        fName: false,
-        sName: false,
+        name: false,
         email: false,
         password: false,
         passwordConfirm: false
     })
-
     const [showPassword, setShowPassword] = useState(false);
-
-    const fNameIsInvalid = didEdit.fName && inputValues.fName === '';
-    const sNameIsInvalid = didEdit.sName && inputValues.sName === '';
+    const nameIsInvalid = didEdit.name && inputValues.name === '';
     const emailIsInvalid = didEdit.email && !inputValues.email.includes('@');
     const passwordMatchInvalid = didEdit.passwordConfirm && inputValues.password !== inputValues.passwordConfirm;
+    const passwordTooShort = didEdit.password && inputValues.password.length < 6;
+    const passwordMissingNumber = didEdit.password && !/\d/.test(inputValues.password);
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log(inputValues);
+        
+        setDidEdit({
+            name: true,
+            email: true,
+            password: true,
+            passwordConfirm: true
+        });
+
+        const nameIsEmpty = inputValues.name.trim() === '';
+        const emailInvalid = !inputValues.email.includes('@');
+        const passwordTooShort = inputValues.password.length < 6;
+        const passwordMissingNumber = !/\d/.test(inputValues.password);
+        const passwordsDoNotMatch = inputValues.password !== inputValues.passwordConfirm;
+
+    if (
+        nameIsEmpty ||
+        emailInvalid ||
+        passwordTooShort ||
+        passwordMissingNumber ||
+        passwordsDoNotMatch
+        ) {
+            return; // Stop form submission if any validation fails
+        }
+        
+        signup(inputValues.email, inputValues.password, inputValues.name);
     }
 
     function handleChange(identifier, value) {
@@ -52,42 +74,31 @@ export default function SignupForm({ onSwitchView }) {
     <form onSubmit={handleSubmit} className={styles.form}>
         <div className={styles.field_row}>
             <div className={styles.control}>
-                <label htmlFor="f_name">First Name:</label>
+                <label htmlFor="f_name">Name:</label>
                 <input
-                    name='f_name'
+                    name='name'
                     type='text'
-                    onBlur={() => handleBlur('fName')}
-                    onChange={(event) => handleChange('fName', event.target.value)}
-                    value={inputValues.fName}/>
+                    onBlur={() => handleBlur('name')}
+                    onChange={(event) => handleChange('name', event.target.value)}
+                    value={inputValues.name}/>
                 <div className={styles.control_error}>
-                    {fNameIsInvalid && <p>Please enter your first name</p>}
+                    {nameIsInvalid && <p>Please enter your name</p>}
                 </div>
             </div>
             <div className={styles.control}>
-                <label htmlFor="s_name">Surame:</label>
+                <label htmlFor="email">Email:</label>
                 <input
-                    name='s_name'
-                    type='text'
-                    onBlur={() => handleBlur('sName')}
-                    onChange={(event) => handleChange('sName', event.target.value)}
-                    value={inputValues.sName}/>
+                    name='email'
+                    type='email'
+                    onBlur={() => handleBlur('email')}
+                    onChange={(event) => handleChange('email', event.target.value)}
+                    value={inputValues.email}/>
                 <div className={styles.control_error}>
-                    {sNameIsInvalid && <p>Please enter your surname</p>}
+                    {emailIsInvalid && <p>Please enter a valid email address</p>}
                 </div>
-            </div>
         </div>
-        <div className={styles.control}>
-            <label htmlFor="email">Email:</label>
-            <input
-                name='email'
-                type='email'
-                onBlur={() => handleBlur('email')}
-                onChange={(event) => handleChange('email', event.target.value)}
-                value={inputValues.email}/>
-            <div className={styles.control_error}>
-                {emailIsInvalid && <p>Please enter a valid email address</p>}
-            </div>
         </div>
+        
         <div className={styles.field_row}>
             <div className={`${styles.control} ${styles.control_icon}`}>
                 <label htmlFor='password'>Password:</label>
@@ -97,10 +108,15 @@ export default function SignupForm({ onSwitchView }) {
                     onChange={(event) => handleChange('password', event.target.value)}
                     value={inputValues.password}/>
                 <button 
+                    type='button'
                     className={styles.btn_icon} 
                     onClick={() => setShowPassword(prev => !prev)}>
                         {showPassword ? <EyeOpen/> : <EyeClosed/>}
                 </button>
+                <div className={styles.control_error}>
+                    {passwordTooShort && <p>Password must be at least 6 characters.</p>}
+                    {passwordMissingNumber && <p>Password must include at least one number.</p>}
+                </div>
             </div>
             <div className={`${styles.control} ${styles.control_icon}`}>
                 <label htmlFor='password_confirm'>Re-type Password:</label>
@@ -111,6 +127,7 @@ export default function SignupForm({ onSwitchView }) {
                     onChange={(event) => handleChange('passwordConfirm', event.target.value)}
                     value={inputValues.passwordConfirm}/>
                 <button 
+                    type='button'
                     className={styles.btn_icon} 
                     onClick={() => setShowPassword(prev => !prev)}>
                         {showPassword ? <EyeOpen/> : <EyeClosed/>}
@@ -121,7 +138,7 @@ export default function SignupForm({ onSwitchView }) {
             </div>
         </div>
         
-        <SocialsLogin formName={"Signup"}/>
+        <SocialsLogin />
         
 
         <div className={styles.form_actions}>
@@ -129,10 +146,12 @@ export default function SignupForm({ onSwitchView }) {
                 type='button' 
                 onClick={ () => onSwitchView('login') }
                 className={styles.btn_flat}
-                style={{'margin-right': '60px'}}>
+                style={{marginRight: '60px'}}>
                     Return to Login...
             </button>
-            <button type='submit' className={styles.btn}>Signup</button>
+            {!isPending && <button type='submit' className={styles.btn}>Signup</button>}
+            {isPending && <button type='submit' className={styles.btn} disabled>Loading</button>}
+            {error && <p>{error}</p>}
         </div>
     </form>
   )
