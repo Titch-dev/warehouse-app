@@ -1,3 +1,6 @@
+
+import { AuthContextProvider } from "@/context/AuthContext";
+
 import Navbar from "@/components/header/navbar";
 import Footbar from "@/components/footer/footbar";
 import "./globals.css";
@@ -5,6 +8,7 @@ import "./globals.css";
 
 import { spartanFont } from "@/lib/fonts";
 import styles from './layout.module.css';
+
 
 export const metadata = {
   title: "Westville Warehouse",
@@ -24,17 +28,20 @@ export const viewport = {
 }
 
 export default function RootLayout({ children }) {
+
   return (
     <html lang="en">
-      <body className={spartanFont.className}>
-        <Navbar/>
-        <div className={styles.wrapper}>
-          {children}
-        </div>
-        <footer className={styles.footer}>
-          <Footbar/>
-        </footer>
-      </body>
+      <AuthContextProvider>
+          <body className={spartanFont.className}>
+            <Navbar/>
+            <div className={styles.wrapper}>
+              {children}
+            </div>
+            <footer className={styles.footer}>
+              <Footbar/>
+            </footer>
+          </body>
+      </AuthContextProvider>
     </html>
   );
 }
