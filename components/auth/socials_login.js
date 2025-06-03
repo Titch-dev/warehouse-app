@@ -13,8 +13,6 @@ import FBookIcon from '@/components/assets/icons/facebookSVG';
 export default function SocialsLogin() {
   const { dispatch } = useAuthContext();
   const [isCancelled, setIsCancelled] = useState(false);
-  const [error, setError] = useState(null);
-  const [isPending, setIsPending] = useState(false);
 
 
   const signInWithGoogle = async () => {
